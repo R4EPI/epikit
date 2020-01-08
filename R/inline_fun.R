@@ -30,7 +30,7 @@ fmt_ci <- function(e = numeric(), l = numeric(), u = numeric(), digits = 2, perc
   msg <- "%s (CI %.2f--%.2f)"
   msg <- gsub("2", digits, msg)
   fun <- if (percent) match.fun(scales::percent) else match.fun(scales::number)
-  e   <- fun(e, scale = 1, accuracy = 1/(10^digits), big.mark = ",")
+  e <- fun(e, scale = 1, accuracy = 1 / (10^digits), big.mark = ",")
   sprintf(msg, e, l, u)
 }
 
@@ -84,12 +84,10 @@ merge_pci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2) {
 #' fmt_count(mtcars, cyl > 3, hp < 100)
 #' fmt_count(iris, Species == "virginica")
 fmt_count <- function(x, ...) {
-
   stopifnot(is.data.frame(x))
   .vars <- rlang::quos(...)
-  f <- dplyr::filter(x, !!! .vars)
+  f <- dplyr::filter(x, !!!.vars)
   f <- dplyr::count(f)
-  prop <- f$n/nrow(x)
+  prop <- f$n / nrow(x)
   sprintf("%d (%s)", f$n, scales::percent(prop, accuracy = 0.1))
-
 }
