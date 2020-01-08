@@ -54,14 +54,16 @@ augment_redundant <- function(x, ...) {
 #' Convert dots to a list of character vectors
 #'
 #' This function is intended to allow the user to use NSE within their dot
-#' calls for the express purpose of renaming functions
+#' calls for the express purpose of renaming functions. This function is
+#' intended for internal use to be passed to other MSF packages.
 #'
 #' @param call a language object reflecting the current call.
 #' @param ... passed from the calling function
 #'
 #'
 #' @return a list of character vectors
-#' @noRd
+#' @export
+#' @keywords internal
 #'
 #' @examples
 #' x <- function(...) {
