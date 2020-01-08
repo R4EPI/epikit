@@ -37,3 +37,5 @@ Imports:
     tidyr (>= 1.0.0),
     tibble,
     glue
+URL: https://github.com/R4EPI/msfmisc
+BugReports: https://github.com/R4EPI/msfmisc/issues
