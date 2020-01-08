@@ -2,11 +2,21 @@ Package: msfmisc
 Title: Miscellaneous Tools for the 'R4Epis' Project
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Zhian N.",
-           family = "Kamvar",
-           role = c("aut", "cre"),
-           email = "zkamvar@gmail.com",
-           comment = c(ORCID = "0000-0003-1458-7108"))
+    c(person(given = "Zhian N.",
+             family = "Kamvar",
+             role = c("aut", "cre"),
+             email = "zkamvar@gmail.com",
+             comment = c(ORCID = "0000-0003-1458-7108")),
+      person(given = "Dirk",
+             family = "Schumacher",
+             role = "aut",
+             email = "mai@dirk-schumacher.net"),
+      person(given = "Alex",
+             family = "Spina",
+             role = "ctb"),
+      person(given = "Kate",
+             family = "Doyle",
+             role = "ctb"))
 Description: Contains tools for formatting inline code, renaming redundant
   columns, and calculating proportions with confidence intervals. This is part
   of the 'R4Epis' project <https://r4epis.netlify.com>.
