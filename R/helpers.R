@@ -13,6 +13,9 @@
 #' fac_from_num(1:100)
 #' fac_from_num(sample(100, 5))
 fac_from_num <- function(x) {
+  if (!inherits(x, c("numeric", "integer"))) {
+    stop("fac_from_num() only uses integer or numeric vectors.", call. = FALSE)
+  }  
   # count the number of unique numbers
   udc <- sort(unique(x))
   udc <- as.character(udc)

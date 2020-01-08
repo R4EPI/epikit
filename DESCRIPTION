@@ -22,7 +22,7 @@ Description: Contains tools for formatting inline code, renaming redundant
   of the 'R4Epis' project <https://r4epis.netlify.com>.
 License: GPL-3
 Suggests: 
-    testthat,
+    testthat (>= 2.1.0),
     outbreaks
 Encoding: UTF-8
 LazyData: true
