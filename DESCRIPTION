@@ -18,12 +18,14 @@ Authors@R:
              family = "Doyle",
              role = "ctb"))
 Description: Contains tools for formatting inline code, renaming redundant
-  columns, and calculating proportions with confidence intervals. This is part
-  of the 'R4Epis' project <https://r4epis.netlify.com>.
+  columns, aggregating age categories, and calculating proportions with
+  confidence intervals. This is part of the 'R4Epis' project
+  <https://r4epis.netlify.com>.
 License: GPL-3
 Suggests: 
     testthat (>= 2.1.0),
-    outbreaks
+    outbreaks,
+    msfdict
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -36,6 +38,7 @@ Imports:
     forcats,
     tidyr (>= 1.0.0),
     tibble,
-    glue
+    glue,
+    tidyselect
 URL: https://github.com/R4EPI/msfmisc
 BugReports: https://github.com/R4EPI/msfmisc/issues

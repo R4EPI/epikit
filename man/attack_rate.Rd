@@ -92,6 +92,7 @@ fmt_ci_df(cfr)
 
 # using a data frame
 if (require("outbreaks")) {
+  withAutoprint({
   e <- outbreaks::ebola_sim$linelist
   case_fatality_rate_df(e,
     outcome == "Death",
@@ -99,5 +100,6 @@ if (require("outbreaks")) {
     add_total = TRUE,
     mergeCI = TRUE
   )
+  })
 }
 }

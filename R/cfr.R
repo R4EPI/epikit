@@ -29,7 +29,6 @@
 #' @param digits if `mergeCI = TRUE`, this determines how many digits are printed
 #'
 #' @export
-#' @importFrom rlang := .data
 #'
 #' @rdname attack_rate
 #'
@@ -48,6 +47,7 @@
 #'
 #' # using a data frame
 #' if (require("outbreaks")) {
+#'   withAutoprint({
 #'   e <- outbreaks::ebola_sim$linelist
 #'   case_fatality_rate_df(e,
 #'     outcome == "Death",
@@ -55,6 +55,7 @@
 #'     add_total = TRUE,
 #'     mergeCI = TRUE
 #'   )
+#'   })
 #' }
 attack_rate <- function(cases, population, conf_level = 0.95,
                         multiplier = 100, mergeCI = FALSE, digits = 2) {

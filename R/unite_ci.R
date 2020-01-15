@@ -14,7 +14,6 @@
 #' @param percent `TRUE` if the result should have a percent symbol added.
 #' @param ci `TRUE` if the result should include "CI" within the braces (defaults to FALSE)
 #'
-#' @importFrom rlang :=
 #' @export
 #' @examples
 #'
