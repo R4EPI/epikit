@@ -7,9 +7,9 @@
 \usage{
 age_categories(
   x,
-  breakers = NA,
+  breakers = NULL,
   lower = 0,
-  upper = NA,
+  upper = NULL,
   by = 10,
   separator = "-",
   ceiling = FALSE,

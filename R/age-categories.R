@@ -46,19 +46,32 @@
 #' }
 
 
-age_categories <- function(x, breakers = NA, lower = 0, upper = NA, by = 10,
+age_categories <- function(x, breakers = NULL, lower = 0, upper = NULL, by = 10,
                            separator = "-", ceiling = FALSE, above.char = "+") {
 
 
   # make sure age variable is numeric
   x <- as.numeric(x)
 
-  if (length(breakers) == 1) {
-    if (!is.na(breakers)) {
-      stop("breakers must be at least three numbers")
-    } else {
-      breakers <- unique(c(seq(lower, upper, by = by), upper))
-    }
+  breaks_exist <- !is.null(breakers)
+  upper_exists <- !is.null(upper)
+  wrong_upper  <- upper_exists && (length(upper) > 1 || any(is.na(upper)))
+  wrong_breaks <- breaks_exist && (length(breakers) < 3 || any(is.na(breakers)))
+
+  if (!upper_exists && !breaks_exist) {
+    stop("one of `breakers` or `upper` must be specified")
+  }
+
+  if (wrong_upper) {
+    stop("please only specify a single upper value", call. = FALSE)
+  }
+
+  if (wrong_breaks) {
+    stop("please specify at least three breakers", call. = FALSE)
+  }
+
+  if (!breaks_exist) {
+    breakers <- unique(c(seq(lower, upper, by = by), upper))
   }
 
   nb <- length(breakers)
@@ -76,12 +89,13 @@ age_categories <- function(x, breakers = NA, lower = 0, upper = NA, by = 10,
   }
   labs <- c(paste(lower_vals, upper_vals, sep = separator), final_val)
 
-  output <- cut(x,
-                breaks = breakers,
-                right = FALSE,
-                include.lowest = FALSE,
-                labels = labs
-               )
+  output <- cut(
+    x,
+    breaks = breakers,
+    right = FALSE,
+    include.lowest = FALSE,
+    labels = labs
+  )
 
   # return variable with groups
   output
@@ -109,8 +123,17 @@ age_categories <- function(x, breakers = NA, lower = 0, upper = NA, by = 10,
 #' @rdname age_categories
 #' @export
 #'
-group_age_categories <- function(dat, years = NULL, months = NULL, weeks = NULL, days = NULL, one_column = TRUE, drop_empty_overlaps = TRUE) {
+group_age_categories <- function(dat,
+                                 years = NULL,
+                                 months = NULL,
+                                 weeks = NULL,
+                                 days = NULL,
+                                 one_column = TRUE,
+                                 drop_empty_overlaps = TRUE) {
 
+  if (!is.data.frame(dat)) {
+    stop("dat must be a data frame", call. = FALSE)
+  }
   # capture the quosures of the columns
   da <- rlang::enquo(days)
   we <- rlang::enquo(weeks)
@@ -124,7 +147,9 @@ group_age_categories <- function(dat, years = NULL, months = NULL, weeks = NULL,
   y <- !is.null(rlang::get_expr(ye))
 
   # stop if none of them are filled
-  stopifnot(d || w || m || y)
+  if (!d && !w && !m && !y) {
+    stop("please specify one or more columns", call. = FALSE)
+  }
 
   # get the columns OR replace them with NA
   nas <- factor(NA_character_)
