@@ -1,4 +1,4 @@
-Package: msfmisc
+Package: epikit
 Title: Miscellaneous Tools for the 'R4Epis' Project
 Version: 0.0.0.9000
 Authors@R: 
@@ -40,5 +40,5 @@ Imports:
     tibble,
     glue,
     tidyselect
-URL: https://github.com/R4EPI/msfmisc
-BugReports: https://github.com/R4EPI/msfmisc/issues
+URL: https://github.com/R4EPI/epikit
+BugReports: https://github.com/R4EPI/epikit/issues

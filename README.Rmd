@@ -13,21 +13,21 @@ knitr::opts_chunk$set(
 )
 ```
 
-# msfmisc
+# epikit
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![CRAN status](https://www.r-pkg.org/badges/version/msfmisc)](https://CRAN.R-project.org/package=msfmisc)
+[![CRAN status](https://www.r-pkg.org/badges/version/epikit)](https://CRAN.R-project.org/package=epikit)
 <!-- badges: end -->
 
-The goal of msfmisc is to ...
+The goal of epikit is to ...
 
 ## Installation
 
-You can install the released version of msfmisc from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of epikit from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("msfmisc")
+install.packages("epikit")
 ```
 
 ## Example
@@ -35,7 +35,7 @@ install.packages("msfmisc")
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(msfmisc)
+library(epikit)
 ## basic example code
 ```
 
