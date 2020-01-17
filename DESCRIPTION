@@ -41,5 +41,7 @@ Imports:
     tibble,
     glue,
     tidyselect
+Remotes:
+  R4EPI/msfdict
 URL: https://github.com/R4EPI/epikit
 BugReports: https://github.com/R4EPI/epikit/issues
