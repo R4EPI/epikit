@@ -25,7 +25,8 @@ License: GPL-3
 Suggests: 
     testthat (>= 2.1.0),
     outbreaks,
-    msfdict
+    msfdict,
+    covr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

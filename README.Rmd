@@ -18,6 +18,9 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/epikit)](https://CRAN.R-project.org/package=epikit)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/zkamvar/epikit?branch=master&svg=true)](https://ci.appveyor.com/project/zkamvar/epikit)
+[![Travis build status](https://travis-ci.org/R4EPI/epikit.svg?branch=master)](https://travis-ci.org/R4EPI/epikit)
+[![Codecov test coverage](https://codecov.io/gh/R4EPI/epikit/branch/master/graph/badge.svg)](https://codecov.io/gh/R4EPI/epikit?branch=master)
 <!-- badges: end -->
 
 The goal of epikit is to ...
