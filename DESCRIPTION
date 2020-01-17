@@ -1,4 +1,4 @@
-Package: msfmisc
+Package: epikit
 Title: Miscellaneous Tools for the 'R4Epis' Project
 Version: 0.0.0.9000
 Authors@R: 
@@ -25,7 +25,8 @@ License: GPL-3
 Suggests: 
     testthat (>= 2.1.0),
     outbreaks,
-    msfdict
+    msfdict,
+    covr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -40,5 +41,7 @@ Imports:
     tibble,
     glue,
     tidyselect
-URL: https://github.com/R4EPI/msfmisc
-BugReports: https://github.com/R4EPI/msfmisc/issues
+Remotes:
+  R4EPI/msfdict
+URL: https://github.com/R4EPI/epikit
+BugReports: https://github.com/R4EPI/epikit/issues

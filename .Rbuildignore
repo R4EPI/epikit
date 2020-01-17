@@ -1,6 +1,9 @@
-^msfmisc\.Rproj$
+^epikit\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^README\.Rmd$
 ^cran-comments\.md$
 ^\.github$
+^appveyor\.yml$
+^\.travis\.yml$
+^codecov\.yml$

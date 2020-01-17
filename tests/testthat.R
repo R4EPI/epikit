@@ -1,4 +1,4 @@
 library(testthat)
-library(msfmisc)
+library(epikit)
 
-test_check("msfmisc")
+test_check("epikit")
