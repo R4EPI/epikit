@@ -25,7 +25,7 @@ License: GPL-3
 Suggests: 
     testthat (>= 2.1.0),
     outbreaks,
-    msfdict,
+    epidict,
     covr
 Encoding: UTF-8
 LazyData: true
@@ -42,6 +42,6 @@ Imports:
     glue,
     tidyselect
 Remotes:
-  R4EPI/msfdict
+  R4EPI/epidict
 URL: https://github.com/R4EPI/epikit
 BugReports: https://github.com/R4EPI/epikit/issues
