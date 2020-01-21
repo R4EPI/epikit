@@ -76,10 +76,10 @@ Create an age group variable
 \examples{
 
 
-if (interactive() && require("dplyr") && require("msfdict")) {
+if (interactive() && require("dplyr") && require("epidict")) {
 withAutoprint({
 set.seed(50)
-dat <- msfdict::gen_data("Cholera", n = 100)
+dat <- epidict::gen_data("Cholera", n = 100, org = "MSF")
 ages <- dat \%>\%
   select(starts_with("age")) \%>\%
   mutate(age_years = age_categories(age_years, breakers = c(0, 5, 10, 15, 20))) \%>\%
