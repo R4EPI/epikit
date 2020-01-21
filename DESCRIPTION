@@ -22,11 +22,6 @@ Description: Contains tools for formatting inline code, renaming redundant
   confidence intervals. This is part of the 'R4Epis' project
   <https://r4epis.netlify.com>.
 License: GPL-3
-Suggests: 
-    testthat (>= 2.1.0),
-    outbreaks,
-    epidict,
-    covr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -41,6 +36,12 @@ Imports:
     tibble,
     glue,
     tidyselect
+Suggests: 
+    testthat (>= 2.1.0),
+    outbreaks,
+    epidict,
+    covr
+Additional_repositories: https://r4epi.github.io/drat
 Remotes:
   R4EPI/epidict
 URL: https://github.com/R4EPI/epikit
