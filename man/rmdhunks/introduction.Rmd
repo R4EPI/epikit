@@ -1,0 +1,125 @@
+The goal of {epikit} is to provide miscellaneous functions for 
+This is a product of the R4EPIs project; learn more at <https://r4epis.netlify.com>.
+
+## Installation
+
+<!--
+You can install {epikit} from CRAN:
+
+``` r
+install.packages("epikit")
+```
+
+<details>
+<!--
+NOTE: everything inside the details tag will be collapsed and effectively
+hidden from the user
+<summary style='text-decoration: underline'>Click here for alternative installation options</summary>
+If there is a bugfix or feature that is not yet on CRAN, you can install it via
+the {drat} package:
+
+-->
+
+You can install {epikit} from the R4EPI repository:
+
+```{r eval = FALSE}
+# install.packages("drat")
+drat::addRepo("R4EPI")
+install.packages("epikit")
+```
+
+You can also install the in-development version from GitHub using the {remotes}
+package (but there's no guarantee that it will be stable):
+
+```{r eval = FALSE}
+# install.packages("remotes")
+remotes::install_github("R4EPI/epikit") 
+```
+
+<!-- </details> -->
+
+-------
+
+```{r load_packages}
+library("epikit")
+```
+
+The {epikit} was primarily designed to house convenience functions for field
+epidemiologists to use in tidying their reports. The functions in {epikit} come
+in a few categories:
+
+### Table modification
+
+These functions all modify the appearance of a table displayed in a report and
+work best with the `knitr::kable()` function.
+
+ - `rename_redundant()` renames redundant columns with a single name. (e.g. `hopitalized_percent` and `confirmed_percent` can both be renamed to `%`)
+ - `augment_redundant()` is similar to `rename_redundant()`, but it modifies the redundant column names (e.g. `hospitalized_n` and `confirmed_n` can become `hospitalized (n)` and `confirmed (n)`)
+ - `merge_ci()` combines estimate, lower bound, and upper bound columns into a single column.
+
+```{r table_mods, results = 'asis'}
+library("knitr")
+library("magrittr")
+df <- data.frame(
+  `a n` = 1:6,
+  `a prop` = round((1:6) / 6, 2),
+  `a deff` = round(pi, 2),
+  `b n` = 6:1,
+  `b prop` = round((6:1) / 6, 2),
+  `b deff` = round(pi * 2, 2),
+  check.names = FALSE
+)
+knitr::kable(df)
+df %>%
+  rename_redundant("%" = "prop", "Design Effect" = "deff") %>%
+  augment_redundant(" (n)" = " n$") %>%
+  knitr::kable()
+```
+
+### Quick proportions with conficence intervals
+
+There are three functions that will provide quick statistics for different rates
+based on binomial estimates of proportions from `binom::binom.wilson()`
+
+ - `attack_rate()`
+ - `case_fatality_rate()`
+ - `mortality_rate()`
+
+```{r rates}
+attack_rate(10, 50)
+case_fatality_rate(2, 50)
+mortality_rate(40, 50000)
+```
+
+In addition, it's possible to rapidly calculate Case fatality rate from a
+linelist, stratified by different groups (e.g. gender):
+
+```{r}
+library("outbreaks")
+case_fatality_rate_df(ebola_sim$linelist, 
+  outcome == "Death", 
+  group = gender,
+  add_total = TRUE,
+  mergeCI = TRUE
+)
+```
+
+### Inline functions
+
+The inline functions make it easier to print estimates with confidence intervals
+in reports with the correct number of digits.
+
+ - `fmt_ci()` formats confidence intervals from three numbers. (e.g. `fmt_ci(50, 10, 80)` produces `r fmt_ci(50, 10, 80)`
+ - `fmt_pci()` formats confidence intervals from three fractions, multiplying by 100 beforehand.
+
+The `_df` suffixes (`fmt_ci_df()`, `fmt_pci_df()`) will print the confidence
+intervals for data stored in data frames. These are designed to work with the
+outputs of the rates functions. For example, `fmt_ci_df(attack_rate(10, 50))`
+will produce `r fmt_ci_df(attack_rate(10, 50))`.
+
+ - `fmt_count()` will count a condition in a data frame and present the number
+   and percent of `TRUE` values.
+
+
+
+

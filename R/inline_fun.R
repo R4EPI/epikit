@@ -18,10 +18,10 @@
 #' @examples
 #'
 #' cfr <- data.frame(x = 1, y = 2, est = 0.5, lower = 0.25, upper = 0.75)
-#' fmt_ci_df(cfr)
+#' fmt_pci_df(cfr)
 #'
 #' # If the data starts at a different column, specify a different number
-#' fmt_ci_df(cfr[-1], 2, d = 1)
+#' fmt_pci_df(cfr[-1], 2, d = 1)
 #'
 #' # It's also possible to provide numbers directly and remove the percent sign.
 #' fmt_ci(pi, pi - runif(1), pi + runif(1), percent = FALSE)
