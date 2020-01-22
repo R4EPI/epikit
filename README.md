@@ -68,6 +68,21 @@ The {epikit} was primarily designed to house convenience functions for
 field epidemiologists to use in tidying their reports. The functions in
 {epikit} come in a few categories:
 
+### Give me a break
+
+If you need a quick function to determine the number of breaks you need
+for a color scale, you can use `find_breaks()`. This will always start
+from 1, so that you can include zero in your scale when you need to.
+
+``` r
+find_breaks(100) # four breaks from 1 to 100
+#> [1]  1 26 51 76
+find_breaks(100, snap = 20) # four breaks, snap to the nearest 20
+#> [1]  1 41 81
+find_breaks(100, snap = 20, ceiling = TRUE) # include the highest number
+#> [1]   1  41  81 100
+```
+
 ### Table modification
 
 These functions all modify the appearance of a table displayed in a
@@ -87,6 +102,11 @@ report and work best with the `knitr::kable()` function.
 ``` r
 library("knitr")
 library("magrittr")
+#> 
+#> Attaching package: 'magrittr'
+#> The following objects are masked from 'package:testthat':
+#> 
+#>     equals, is_less_than, not
 df <- data.frame(
   `a n` = 1:6,
   `a prop` = round((1:6) / 6, 2),
@@ -153,7 +173,7 @@ a linelist, stratified by different groups (e.g. gender):
 
 ``` r
 library("outbreaks")
-case_fatality_rate_df(ebola_sim$linelist, 
+case_fatality_rate_df(ebola_sim_clean$linelist, 
   outcome == "Death", 
   group = gender,
   add_total = TRUE,
@@ -162,9 +182,9 @@ case_fatality_rate_df(ebola_sim$linelist,
 #> # A tibble: 3 x 5
 #>   gender deaths population   cfr ci            
 #>   <fct>   <int>      <int> <dbl> <chr>         
-#> 1 f        1301       2962  43.9 (42.14--45.72)
-#> 2 m        1281       2926  43.8 (41.99--45.58)
-#> 3 Total    2582       5888  43.9 (42.59--45.12)
+#> 1 f        1291       2934  44.0 (42.21--45.80)
+#> 2 m        1273       2895  44.0 (42.17--45.79)
+#> 3 Total    2564       5829  44.0 (42.72--45.26)
 ```
 
 ### Inline functions
@@ -181,6 +201,103 @@ The `_df` suffixes (`fmt_ci_df()`, `fmt_pci_df()`) will print the
 confidence intervals for data stored in data frames. These are designed
 to work with the outputs of the rates functions. For example,
 `fmt_ci_df(attack_rate(10, 50))` will produce 20.00% (CI 11.24–33.04).
+All of these suffixes will have three options `e`, `l`, and `u`. These
+refer to `estimate`, `lower`, and `upper` column positions or names.
 
   - `fmt_count()` will count a condition in a data frame and present the
-    number and percent of `TRUE` values.
+    number and percent of `TRUE` values. For example, if you wanted to
+    count the number of women patients from Rokupa hospital, you would
+    write: `fmt_count(ebola_sim_clean$linelist, gender == "f", hospital
+    == "Rokupa Hospital")` and it would produce: 210 (3.6%)
+
+### Confidence interval manipulation
+
+The confidence interval manipulation functions take in a data frame and
+combine their confidence intervals into a single character string much
+like the inline functions do. There are two flavors:
+
+  - `merge_ci_df()` and `merge_pci_df()` will merge just the values of
+    the confidence interval and leave the estimate alone. Note: this
+    WILL remove the lower and upper columns.
+  - `unite_ci()` merges both the confidence interval and the estimate
+    into a single character column. This generally has more options than
+    `merge_ci()`
+
+This is useful for reporting models:
+
+``` r
+fit <- lm(100/mpg ~ disp + hp + wt + am, data = mtcars)
+df  <- data.frame(v = names(coef(fit)), e = coef(fit), confint(fit), row.names = NULL)
+names(df) <- c("variable", "estimate", "lower", "upper")
+print(df)
+#>      variable    estimate        lower       upper
+#> 1 (Intercept) 0.740647656 -0.774822875 2.256118188
+#> 2        disp 0.002702925 -0.002867999 0.008273849
+#> 3          hp 0.005274547 -0.001400580 0.011949674
+#> 4          wt 1.001303136  0.380088737 1.622517536
+#> 5          am 0.155814790 -0.614677730 0.926307310
+
+# unite CI has more options
+unite_ci(df, "slope (CI)", estimate, lower, upper, m100 = FALSE, percent = FALSE)
+#>      variable         slope (CI)
+#> 1 (Intercept) 0.74 (-0.77--2.26)
+#> 2        disp 0.00 (-0.00--0.01)
+#> 3          hp 0.01 (-0.00--0.01)
+#> 4          wt  1.00 (0.38--1.62)
+#> 5          am 0.16 (-0.61--0.93)
+
+# merge_ci just needs to know where the estimate is
+merge_ci_df(df, e = 2)
+#>      variable    estimate            ci
+#> 1 (Intercept) 0.740647656 (-0.77--2.26)
+#> 2        disp 0.002702925 (-0.00--0.01)
+#> 3          hp 0.005274547 (-0.00--0.01)
+#> 4          wt 1.001303136  (0.38--1.62)
+#> 5          am 0.155814790 (-0.61--0.93)
+```
+
+### Age categories
+
+A couple of functions are dedicated to constructing age categories and
+partitioning them into separate chunks.
+
+  - `age_categories()` takes in a vector of numbers and returns
+    formatted age categories.
+  - `group_age_categories()` will take a data frame with different age
+    categories in columns (e.g. years, months, weeks) and combine them
+    into a single column, selecting the column with the lowest priority.
+
+<!-- end list -->
+
+``` r
+set.seed(1)
+x <- sample(0:100, 20, replace = TRUE)
+y <- ifelse(x < 2, sample(48, 20, replace = TRUE), NA)
+df <- data.frame(
+  age_years = age_categories(x, upper = 80), 
+  age_months = age_categories(y, upper = 16, by = 6)
+)
+df %>% 
+  group_age_categories(years = age_years, months = age_months)
+#>    age_years age_months age_category
+#> 1      60-69       <NA>  60-69 years
+#> 2      30-39       <NA>  30-39 years
+#> 3        0-9        16+   16+ months
+#> 4      30-39       <NA>  30-39 years
+#> 5        80+       <NA>    80+ years
+#> 6      40-49       <NA>  40-49 years
+#> 7      10-19       <NA>  10-19 years
+#> 8        80+       <NA>    80+ years
+#> 9      50-59       <NA>  50-59 years
+#> 10     50-59       <NA>  50-59 years
+#> 11       80+       <NA>    80+ years
+#> 12       80+       <NA>    80+ years
+#> 13     20-29       <NA>  20-29 years
+#> 14     50-59       <NA>  50-59 years
+#> 15     70-79       <NA>  70-79 years
+#> 16       0-9       <NA>    0-9 years
+#> 17     70-79       <NA>  70-79 years
+#> 18     70-79       <NA>  70-79 years
+#> 19       80+       <NA>    80+ years
+#> 20     30-39       <NA>  30-39 years
+```
