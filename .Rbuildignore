@@ -8,3 +8,6 @@
 ^\.travis\.yml$
 ^codecov\.yml$
 ^README\.html$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
