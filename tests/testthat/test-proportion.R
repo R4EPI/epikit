@@ -15,6 +15,10 @@ test_that("Rates work with missing data", {
   expect_identical(pna5$lower     , c(NA, NA, p5$lower))
   expect_identical(pna5$upper     , c(NA, NA, p5$upper))
 
+  merged <- attack_rate(c(5, NA, 5), c(NA, 10, 10), mergeCI = TRUE)
+  expect_identical(merged$ci, c("(NA--NA)", "(NA--NA)", "(23.66--76.34)"))
+  merged2 <- case_fatality_rate(c(5, NA, 5), c(NA, 10, 10), mergeCI = TRUE)
+  expect_identical(merged2$ci, c("(NA--NA)", "(NA--NA)", "(23.66--76.34)"))
 })
 
 test_that("mismatched data are rejected", {
@@ -55,6 +59,10 @@ test_that("mortality rates work", {
   mr <- mortality_rate(accidentals, US_population, multiplier = 10^5)
   expect_named(mr, c("deaths", "population", "mortality per 100 000", "lower", "upper"))
   expect_equal(mr$"mortality per 100 000", 37.02, tol = 0.01)
+
+  mr <- mortality_rate(accidentals, US_population, multiplier = 10^5, mergeCI = TRUE)
+  expect_named(mr, c("deaths", "population", "mortality per 100 000", "ci"))
+  expect_equal(mr$ci, "(36.80--37.24)")
 })
 
 
@@ -83,7 +91,7 @@ test_that("case_fatality_rate_df will do stratified analysis", {
 
 })
 
-test_that("case_fatality_rate_df will do stratified analysis", {
+test_that("case_fatality_rate_df will do stratified analysis with missing", {
 
   no_s_iris <- iris
   no_s_iris$Species <- forcats::fct_recode(no_s_iris$Species, NULL = "setosa")
@@ -99,3 +107,43 @@ test_that("case_fatality_rate_df will do stratified analysis", {
 
 })
 
+test_that("case_fatality_rate_df will add a total row to stratified analysis", {
+
+  no_s_iris <- iris
+  no_s_iris$Species <- forcats::fct_recode(no_s_iris$Species, NULL = "setosa")
+  iris_res <- case_fatality_rate_df(no_s_iris, Sepal.Width < 3, group = Species, add_total = TRUE)
+
+  iris_n <- with(iris, tapply(Sepal.Width < 3, Species, function(i) case_fatality_rate(sum(i), length(i))))
+  iris_n <- tibble::rownames_to_column(do.call('rbind', iris_n), "Species")
+  iris_n <- tibble::as_tibble(iris_n)[c(2, 3, 1), ]
+  iris_n$Species[3] <- "(Missing)"
+  iris_n <- rbind(
+    iris_n, 
+    cbind(Species = "Total", case_fatality_rate_df(iris, Sepal.Width < 3))
+  )
+  iris_n$Species <- forcats::fct_inorder(iris_n$Species)
+ 
+  expect_equal(iris_res, iris_n)
+
+})
+
+test_that("case_fatality_rate_df will add a total row to stratified analysis and merge CI", {
+
+  no_s_iris <- iris
+  no_s_iris$Species <- forcats::fct_recode(no_s_iris$Species, NULL = "setosa")
+  iris_res <- case_fatality_rate_df(no_s_iris, Sepal.Width < 3, group = Species, add_total = TRUE, mergeCI = TRUE)
+
+  iris_n <- with(iris, tapply(Sepal.Width < 3, Species, function(i) case_fatality_rate(sum(i), length(i))))
+  iris_n <- tibble::rownames_to_column(do.call('rbind', iris_n), "Species")
+  iris_n <- tibble::as_tibble(iris_n)[c(2, 3, 1), ]
+  iris_n$Species[3] <- "(Missing)"
+  iris_n <- rbind(
+    iris_n, 
+    cbind(Species = "Total", case_fatality_rate_df(iris, Sepal.Width < 3))
+  )
+  iris_n$Species <- forcats::fct_inorder(iris_n$Species)
+  iris_n <- merge_ci_df(iris_n, e = 4)
+ 
+  expect_equal(iris_res, iris_n)
+
+})

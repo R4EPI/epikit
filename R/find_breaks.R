@@ -22,7 +22,12 @@
 #' # Include the value itself
 #' find_breaks(123, snap = 25, ceiling = TRUE)
 find_breaks <- function(n, breaks = 4, snap = 1, ceiling = FALSE) {
-  if (snap >= n) stop(sprintf("snap (%d) must be smaller than n (%d)", snap, n))
+  chk <- function(i) length(i) != 1 || !is.finite(i)
+  pos <- function(i) i <= 0
+  if (chk(n)) stop("n must be a single finite number", call. = FALSE)
+  if (chk(breaks) || pos(breaks)) stop("breaks must be a single, positive finite number", call. = FALSE)
+  if (chk(snap) || pos(snap)) stop("snap must be a single, positive finite number", call. = FALSE)
+  if (snap >= n) stop(sprintf("snap (%d) must be smaller than n (%d)", snap, n), call. = FALSE)
   seq_by <- ceiling((n/breaks)/snap) * snap
   res <- seq(1, n, by = seq_by)
   if (ceiling) unique(c(res, n)) else res

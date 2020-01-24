@@ -59,7 +59,7 @@ age_categories <- function(x, breakers = NULL, lower = 0, upper = NULL, by = 10,
   wrong_breaks <- breaks_exist && (length(breakers) < 3 || any(is.na(breakers)))
 
   if (!upper_exists && !breaks_exist) {
-    stop("one of `breakers` or `upper` must be specified")
+    stop("one of `breakers` or `upper` must be specified", call. = FALSE)
   }
 
   if (wrong_upper) {
