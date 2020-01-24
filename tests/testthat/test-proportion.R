@@ -15,6 +15,10 @@ test_that("Rates work with missing data", {
   expect_identical(pna5$lower     , c(NA, NA, p5$lower))
   expect_identical(pna5$upper     , c(NA, NA, p5$upper))
 
+  merged <- attack_rate(c(5, NA, 5), c(NA, 10, 10), mergeCI = TRUE)
+  expect_identical(merged$ci, c("(NA--NA)", "(NA--NA)", "(23.66--76.34)"))
+  merged2 <- case_fatality_rate(c(5, NA, 5), c(NA, 10, 10), mergeCI = TRUE)
+  expect_identical(merged2$ci, c("(NA--NA)", "(NA--NA)", "(23.66--76.34)"))
 })
 
 test_that("mismatched data are rejected", {
