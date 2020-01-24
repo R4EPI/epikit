@@ -52,24 +52,6 @@ fmt_ci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2, percent = TRUE
   fmt_ci(x[[e]], x[[l]], x[[u]], digits = digits, percent = percent)
 }
 
-#' @export
-#' @rdname fmt_ci
-merge_ci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2) {
-  cis <- fmt_ci_df(x, e, l, u, digits)
-  x[c(l, u)] <- NULL
-  x$ci <- gsub("^.+?\\(CI ", "(", cis)
-  x
-}
-
-#' @export
-#' @rdname fmt_ci
-merge_pci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2) {
-  cis <- fmt_pci_df(x, e, l, u, digits)
-  x[c(l, u)] <- NULL
-  x$ci <- gsub("^.+?\\(CI ", "(", cis)
-  x
-}
-
 #' Counts and proportions inline
 #'
 #' These functions will give proportions for different variables inline.
@@ -85,8 +67,7 @@ merge_pci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2) {
 #' fmt_count(iris, Species == "virginica")
 fmt_count <- function(x, ...) {
   stopifnot(is.data.frame(x))
-  .vars <- rlang::quos(...)
-  f <- dplyr::filter(x, !!!.vars)
+  f <- dplyr::filter(x, ...)
   f <- dplyr::count(f)
   prop <- f$n / nrow(x)
   sprintf("%d (%s)", f$n, scales::percent(prop, accuracy = 0.1))

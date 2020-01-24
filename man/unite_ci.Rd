@@ -2,6 +2,8 @@
 % Please edit documentation in R/unite_ci.R
 \name{unite_ci}
 \alias{unite_ci}
+\alias{merge_ci_df}
+\alias{merge_pci_df}
 \title{Unite estimates and confidence intervals}
 \usage{
 unite_ci(
@@ -14,6 +16,10 @@ unite_ci(
   percent = FALSE,
   ci = FALSE
 )
+
+merge_ci_df(x, e = 3, l = e + 1, u = e + 2, digits = 2)
+
+merge_pci_df(x, e = 3, l = e + 1, u = e + 2, digits = 2)
 }
 \arguments{
 \item{x}{a data frame with at least three columns defining an estimate, lower
@@ -33,6 +39,12 @@ Upper.}
 \item{percent}{\code{TRUE} if the result should have a percent symbol added.}
 
 \item{ci}{\code{TRUE} if the result should include "CI" within the braces (defaults to FALSE)}
+
+\item{e}{the column of the estimate (defaults to the third column). Otherwise, a number}
+
+\item{l}{the column of the lower bound (defaults to the fourth column). Otherwise, a number}
+
+\item{u}{the column of the upper bound (defaults to the fifth column), otherwise, a number}
 }
 \description{
 create a character column by combining estimate, lower and upper columns.

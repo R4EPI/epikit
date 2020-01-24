@@ -41,8 +41,6 @@ unite_ci <- function(x, col = NULL, ..., remove = TRUE, digits = 2, m100 = TRUE,
   first_pos <- which(names(x) %in% from_vars)[1]
   last_pos  <- which(names(x) %in% from_vars)[3]
 
-  
-
   if (m100) {
     new_col <- fmt_pci_df(x, e = from_vars[1], l = from_vars[2], u = from_vars[3], digits = digits, percent = percent)
   } else {
@@ -54,6 +52,24 @@ unite_ci <- function(x, col = NULL, ..., remove = TRUE, digits = 2, m100 = TRUE,
   out     <- tibble::add_column(out, !! col := new_col, .after = after)
 
   out
-
-
 }
+
+#' @export
+#' @inheritParams fmt_pci_df
+#' @rdname unite_ci
+merge_ci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2) {
+  cis <- fmt_ci_df(x, e, l, u, digits)
+  x[c(l, u)] <- NULL
+  x$ci <- gsub("^.+?\\(CI ", "(", cis)
+  x
+}
+
+#' @export
+#' @rdname unite_ci 
+merge_pci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2) {
+  cis <- fmt_pci_df(x, e, l, u, digits)
+  x[c(l, u)] <- NULL
+  x$ci <- gsub("^.+?\\(CI ", "(", cis)
+  x
+}
+
