@@ -1,0 +1,19 @@
+---
+title: "Introduction to epikit"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to epikit}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r intro-hunk, child = "../man/rmdhunks/introduction.Rmd"}
+```
+

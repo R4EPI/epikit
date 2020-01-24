@@ -69,7 +69,7 @@ work best with the `knitr::kable()` function.
  - `augment_redundant()` is similar to `rename_redundant()`, but it modifies the redundant column names (e.g. `hospitalized_n` and `confirmed_n` can become `hospitalized (n)` and `confirmed (n)`)
  - `merge_ci()` combines estimate, lower bound, and upper bound columns into a single column.
 
-```{r table_mods, results = 'asis'}
+```{r table_mods, results = 'asis', eval = requireNamespace("knitr") && requireNamespace("magrittr")}
 library("knitr")
 library("magrittr")
 df <- data.frame(
@@ -106,7 +106,7 @@ mortality_rate(40, 50000)
 In addition, it's possible to rapidly calculate Case fatality rate from a
 linelist, stratified by different groups (e.g. gender):
 
-```{r}
+```{r cfr, eval = requireNamespace("outbreaks")}
 library("outbreaks")
 case_fatality_rate_df(ebola_sim_clean$linelist, 
   outcome == "Death", 
