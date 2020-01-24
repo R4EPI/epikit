@@ -18,3 +18,14 @@ test_that("Unite CI will unite the colums by name", {
   expect_identical(united[[1]], df[[1]])
 
 })
+
+test_that("Unite CI needs three columns to work its magic", {
+  expect_error(unite_ci(df, "what", estimate, lower), "This function requires three columns: an estimate, a lower value, and an upper value")
+})
+
+test_that("Unite CI will give a default name for the missing slope name", {
+  u <- unite_ci(df, NULL, estimate, lower, upper)
+  expect_named(u, c("variable", "estimate"))
+  u <- unite_ci(df, NULL, estimate, lower, upper, remove = FALSE)
+  expect_named(u, c("variable", "estimate", "lower", "upper", "estimate_ci"))
+})

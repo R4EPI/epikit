@@ -9,6 +9,10 @@ test_that("find_breaks won't break down for missing", {
   expect_error(find_breaks(100, snap = NA), "snap must be a single, positive finite number")
 })
 
+test_that("snap must be smaller than n", {
+  expect_error(find_breaks(100, snap = 1000), "snap (1000) must be smaller than n (100)", fixed = TRUE)
+})
+
 test_that("breaks will work with snapping", {
   expect_equal(find_breaks(100, snap = 20), c(0, 40, 80) + 1)
   expect_equal(find_breaks(100, snap = 20, ceiling = TRUE), c(0, 40, 80, 99) + 1)

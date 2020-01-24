@@ -27,7 +27,7 @@ unite_ci <- function(x, col = NULL, ..., remove = TRUE, digits = 2, m100 = TRUE,
 
   from_vars <- tidyselect::vars_select(colnames(x), ...)
   if (length(from_vars) != 3) {
-    stop("This function requires three columns: an estimate, a lower value, and an upper value")
+    stop("This function requires three columns: an estimate, a lower value, and an upper value", call. = FALSE)
   }
   if (is.null(col)) {
     col <- from_vars[1]
