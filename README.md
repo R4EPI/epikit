@@ -9,8 +9,8 @@ epikit
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/epikit)](https://CRAN.R-project.org/package=epikit)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/zkamvar/epikit?branch=master&svg=true)](https://ci.appveyor.com/project/zkamvar/epikit)
+[![Appveyor build
+status](https://ci.appveyor.com/api/projects/status/gqx0kvytrrd5elbg?svg=true)](https://ci.appveyor.com/project/zkamvar/epikit)
 [![Travis build
 status](https://travis-ci.org/R4EPI/epikit.svg?branch=master)](https://travis-ci.org/R4EPI/epikit)
 [![Codecov test
@@ -102,11 +102,6 @@ report and work best with the `knitr::kable()` function.
 ``` r
 library("knitr")
 library("magrittr")
-#> 
-#> Attaching package: 'magrittr'
-#> The following objects are masked from 'package:testthat':
-#> 
-#>     equals, is_less_than, not
 df <- data.frame(
   `a n` = 1:6,
   `a prop` = round((1:6) / 6, 2),
