@@ -48,7 +48,7 @@ The {epikit} was primarily designed to house convenience functions for field
 epidemiologists to use in tidying their reports. The functions in {epikit} come
 in a few categories:
 
-### Give me a break
+## Give me a break
 
 If you need a quick function to determine the number of breaks you need for a
 color scale, you can use `find_breaks()`. This will always start from 1, so that
@@ -60,7 +60,7 @@ find_breaks(100, snap = 20) # four breaks, snap to the nearest 20
 find_breaks(100, snap = 20, ceiling = TRUE) # include the highest number
 ```
 
-### Table modification
+## Table modification
 
 These functions all modify the appearance of a table displayed in a report and
 work best with the `knitr::kable()` function.
@@ -88,7 +88,7 @@ df %>%
   knitr::kable()
 ```
 
-### Quick proportions with conficence intervals
+## Quick proportions with conficence intervals
 
 There are three functions that will provide quick statistics for different rates
 based on binomial estimates of proportions from `binom::binom.wilson()`
@@ -116,7 +116,7 @@ case_fatality_rate_df(ebola_sim_clean$linelist,
 )
 ```
 
-### Inline functions
+## Inline functions
 
 The inline functions make it easier to print estimates with confidence intervals
 in reports with the correct number of digits.
@@ -136,7 +136,7 @@ column positions or names.
    of women patients from Rokupa hospital, you would write: `fmt_count(ebola_sim_clean$linelist, gender == "f", hospital == "Rokupa Hospital")` and it would produce: `r fmt_count(ebola_sim_clean$linelist, gender == "f", hospital == "Rokupa Hospital")`
 
 
-### Confidence interval manipulation
+## Confidence interval manipulation
 
 The confidence interval manipulation functions take in a data frame and combine
 their confidence intervals into a single character string much like the inline
@@ -163,7 +163,7 @@ unite_ci(df, "slope (CI)", estimate, lower, upper, m100 = FALSE, percent = FALSE
 merge_ci_df(df, e = 2)
 ```
 
-### Age categories
+## Age categories
 
 A couple of functions are dedicated to constructing age categories and partitioning them into separate chunks.
 

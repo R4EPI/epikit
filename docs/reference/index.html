@@ -82,6 +82,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/intro.html">Introduction to epikit</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -117,7 +129,41 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <h2 id="section-generate-breaks-for-color-scales" class="hasAnchor"><a href="#section-generate-breaks-for-color-scales" class="anchor"></a>Generate breaks for color scales</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="find_breaks.html">find_breaks()</a></code> </p>
+        </td>
+        <td><p>Automatically calculate breaks for a number</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-modify-column-names" class="hasAnchor"><a href="#section-modify-column-names" class="anchor"></a>Modify column names</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="rename_redundant.html">rename_redundant()</a></code> <code><a href="rename_redundant.html">augment_redundant()</a></code> </p>
+        </td>
+        <td><p>Cosmetically relabel all columns that contains a certain pattern</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="unite_ci.html">unite_ci()</a></code> <code><a href="unite_ci.html">merge_ci_df()</a></code> <code><a href="unite_ci.html">merge_pci_df()</a></code> </p>
+        </td>
+        <td><p>Unite estimates and confidence intervals</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-format-age-categories" class="hasAnchor"><a href="#section-format-age-categories" class="anchor"></a>Format age categories</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -127,28 +173,32 @@
           <p><code><a href="age_categories.html">age_categories()</a></code> <code><a href="age_categories.html">group_age_categories()</a></code> </p>
         </td>
         <td><p>Create an age group variable</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-calculate-proportions" class="hasAnchor"><a href="#section-calculate-proportions" class="anchor"></a>Calculate proportions</h2>
+          <p class="section-desc"><p>Use these functions to calculate tables of proportions using <code><a href="https://rdrr.io/pkg/binom/man/binom.confint.html">binom::binom.wilson()</a></code></p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="attack_rate.html">attack_rate()</a></code> <code><a href="attack_rate.html">case_fatality_rate()</a></code> <code><a href="attack_rate.html">case_fatality_rate_df()</a></code> <code><a href="attack_rate.html">mortality_rate()</a></code> </p>
         </td>
         <td><p>Rates and Ratios</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-format-proportions-and-confidence-intervals-inline" class="hasAnchor"><a href="#section-format-proportions-and-confidence-intervals-inline" class="anchor"></a>Format proportions and confidence intervals inline</h2>
+          <p class="section-desc"><p>Use these functions to produce inline text in Rmarkdown documents</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
-          <p><code><a href="fac_from_num.html">fac_from_num()</a></code> </p>
-        </td>
-        <td><p>create factors from numbers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_breaks.html">find_breaks()</a></code> </p>
-        </td>
-        <td><p>Automatically calculate breaks for a number</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fmt_ci.html">fmt_ci()</a></code> <code><a href="fmt_ci.html">fmt_pci()</a></code> <code><a href="fmt_ci.html">fmt_pci_df()</a></code> <code><a href="fmt_ci.html">fmt_ci_df()</a></code> <code><a href="fmt_ci.html">merge_ci_df()</a></code> <code><a href="fmt_ci.html">merge_pci_df()</a></code> </p>
+          <p><code><a href="fmt_ci.html">fmt_ci()</a></code> <code><a href="fmt_ci.html">fmt_pci()</a></code> <code><a href="fmt_ci.html">fmt_pci_df()</a></code> <code><a href="fmt_ci.html">fmt_ci_df()</a></code> </p>
         </td>
         <td><p>Helper to format confidence interval for text</p></td>
       </tr><tr>
@@ -157,18 +207,20 @@
           <p><code><a href="fmt_count.html">fmt_count()</a></code> </p>
         </td>
         <td><p>Counts and proportions inline</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-miscellaneous" class="hasAnchor"><a href="#section-miscellaneous" class="anchor"></a>Miscellaneous</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
-          <p><code><a href="rename_redundant.html">rename_redundant()</a></code> <code><a href="rename_redundant.html">augment_redundant()</a></code> </p>
+          <p><code><a href="fac_from_num.html">fac_from_num()</a></code> </p>
         </td>
-        <td><p>Cosmetically relabel all columns that contains a certain pattern</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="unite_ci.html">unite_ci()</a></code> </p>
-        </td>
-        <td><p>Unite estimates and confidence intervals</p></td>
+        <td><p>create factors from numbers</p></td>
       </tr>
     </tbody>
     </table>
@@ -177,7 +229,12 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-generate-breaks-for-color-scales">Generate breaks for color scales</a></li>
+      <li><a href="#section-modify-column-names">Modify column names</a></li>
+      <li><a href="#section-format-age-categories">Format age categories</a></li>
+      <li><a href="#section-calculate-proportions">Calculate proportions</a></li>
+      <li><a href="#section-format-proportions-and-confidence-intervals-inline">Format proportions and confidence intervals inline</a></li>
+      <li><a href="#section-miscellaneous">Miscellaneous</a></li>
     </ul>
   </div>
 </div>
