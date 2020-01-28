@@ -40,9 +40,13 @@ Suggests:
     testthat (>= 2.1.0),
     outbreaks,
     epidict,
-    covr
+    covr,
+    knitr,
+    magrittr,
+    rmarkdown
 Additional_repositories: https://r4epi.github.io/drat
 Remotes:
   R4EPI/epidict
 URL: https://github.com/R4EPI/epikit
 BugReports: https://github.com/R4EPI/epikit/issues
+VignetteBuilder: knitr

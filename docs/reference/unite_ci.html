@@ -85,6 +85,18 @@ This is similar to tidyr::unite()." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/intro.html">Introduction to epikit</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -125,7 +137,11 @@ This is similar to <code><a href='https://tidyr.tidyverse.org/reference/unite.ht
   <span class='kw'>m100</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+)
+
+<span class='fu'>merge_ci_df</span>(<span class='no'>x</span>, <span class='kw'>e</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>l</span> <span class='kw'>=</span> <span class='no'>e</span> + <span class='fl'>1</span>, <span class='kw'>u</span> <span class='kw'>=</span> <span class='no'>e</span> + <span class='fl'>2</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+
+<span class='fu'>merge_pci_df</span>(<span class='no'>x</span>, <span class='kw'>e</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>l</span> <span class='kw'>=</span> <span class='no'>e</span> + <span class='fl'>1</span>, <span class='kw'>u</span> <span class='kw'>=</span> <span class='no'>e</span> + <span class='fl'>2</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,6 +179,18 @@ Upper.</p></td>
     <tr>
       <th>ci</th>
       <td><p><code>TRUE</code> if the result should include "CI" within the braces (defaults to FALSE)</p></td>
+    </tr>
+    <tr>
+      <th>e</th>
+      <td><p>the column of the estimate (defaults to the third column). Otherwise, a number</p></td>
+    </tr>
+    <tr>
+      <th>l</th>
+      <td><p>the column of the lower bound (defaults to the fourth column). Otherwise, a number</p></td>
+    </tr>
+    <tr>
+      <th>u</th>
+      <td><p>the column of the upper bound (defaults to the fifth column), otherwise, a number</p></td>
     </tr>
     </table>
 
