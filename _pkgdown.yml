@@ -1,1 +1,22 @@
 destination: docs
+
+- title: Generate breaks for color scales
+  desc: ~
+  contents:
+  - '`find_breaks`'
+- title: Modify column names
+  desc: ~
+  contents:
+  - '`rename_redundant`'
+  - '`unite_ci`'
+- title: Format age categories
+  desc: ~
+  contents:
+  - '`age_categories`'
+- title: Calculate proportions
+  desc: Use these functions to calculate tables of proportions using `binom::binom.wilson()`
+  - '`attack_rate`'
+- title: Format proportions and confidence intervals inline. 
+- desc: Use these functions to produce inline text in Rmarkdown documents
+  - '`fmt_ci`'
+  - '`fmt_count`'
