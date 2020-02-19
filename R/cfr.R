@@ -100,10 +100,15 @@ case_fatality_rate_df <- function(x, deaths, group = NULL, conf_level = 0.95,
   # This creates a list column for the case fatality rate based on the
   # calculated deaths and population before... so this means that
   # THE ORDER OF THE STATEMENTS MATTER
+  # 
+  # Wed Feb 19 09:25:26 2020 ---------------------------------------------
+  # This was modified to count the population for the non-missing cases, 
+  # assuming the deaths columns would either be TRUE, FALSE, or NA for 
+  # a death, recovery, or undetermined. 
   res <- dplyr::summarise(
     x,
     !!quote(deaths) := sum(!!qdeath, na.rm = TRUE),
-    !!quote(population) := dplyr::n(),
+    !!quote(population) := dplyr::n() - sum(is.na(!!qdeath)),
     !!quote(cfr) := list(case_fatality_rate(
       .data$deaths,
       .data$population,
@@ -115,7 +120,7 @@ case_fatality_rate_df <- function(x, deaths, group = NULL, conf_level = 0.95,
   )
 
   # unnesting the list column
-  res <- tidyr::unnest(res, .data$cfr)
+  res <- tidyr::unnest(res, col = "cfr")
 
   # adding the total if there was grouping
   if (add_total && wants_grouping) {

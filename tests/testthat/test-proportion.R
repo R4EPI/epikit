@@ -91,6 +91,32 @@ test_that("case_fatality_rate_df will do stratified analysis", {
 
 })
 
+test_that("case_fatality_rate_df will do stratified analysis with missing cases", {
+
+  miss_iris <- iris
+  # setosa only has two samples with Sepal.Width < 3. If we set the max sepal
+  # width value to missing, then there are only 49 samples to account for in
+  # this example. 
+  miss_iris$Sepal.Width[iris$Sepal.Width == max(iris$Sepal.Width)] <- NA
+
+  iris_res <- case_fatality_rate_df(miss_iris, Sepal.Width < 3, group = Species)
+  iris_n <- with(miss_iris[!is.na(miss_iris$Sepal.Width), ], 
+    tapply(Sepal.Width < 3, Species, 
+      function(i) case_fatality_rate(sum(i), length(i))
+    )
+  )
+
+  iris_n <- tibble::rownames_to_column(do.call('rbind', iris_n), "Species")
+  iris_n <- tibble::as_tibble(iris_n)
+  iris_n$Species <- forcats::fct_inorder(iris_n$Species)
+ 
+  expect_equal(iris_res, iris_n)
+  
+  # Here, we are ensuring that this value is indeed greater than 4. 
+  expect_gt(iris_res$cfr[1], 4)
+
+})
+
 test_that("case_fatality_rate_df will do stratified analysis with missing", {
 
   no_s_iris <- iris
