@@ -23,7 +23,6 @@ product of the R4EPIs project; learn more at
 
 ## Installation
 
-<!--
 You can install {epikit} from CRAN:
 
 ``` r
@@ -31,14 +30,15 @@ install.packages("epikit")
 ```
 
 <details>
+
 <!--
 NOTE: everything inside the details tag will be collapsed and effectively
 hidden from the user
-<summary style='text-decoration: underline'>Click here for alternative installation options</summary>
-If there is a bugfix or feature that is not yet on CRAN, you can install it via
-the {drat} package:
+ -->
 
--->
+<summary style='text-decoration: underline'>Click here for alternative
+installation options</summary> If there is a bugfix or feature that is
+not yet on CRAN, you can install it via the {drat} package:
 
 You can install {epikit} from the R4EPI repository:
 
@@ -56,7 +56,7 @@ You can also install the in-development version from GitHub using the
 remotes::install_github("R4EPI/epikit") 
 ```
 
-<!-- </details> -->
+</details>
 
 -----
 
@@ -68,7 +68,7 @@ The {epikit} was primarily designed to house convenience functions for
 field epidemiologists to use in tidying their reports. The functions in
 {epikit} come in a few categories:
 
-### Give me a break
+## Give me a break
 
 If you need a quick function to determine the number of breaks you need
 for a color scale, you can use `find_breaks()`. This will always start
@@ -83,7 +83,7 @@ find_breaks(100, snap = 20, ceiling = TRUE) # include the highest number
 #> [1]   1  41  81 100
 ```
 
-### Table modification
+## Table modification
 
 These functions all modify the appearance of a table displayed in a
 report and work best with the `knitr::kable()` function.
@@ -139,7 +139,7 @@ df %>%
 |     5 | 0.83 |          3.14 |     2 | 0.33 |          6.28 |
 |     6 | 1.00 |          3.14 |     1 | 0.17 |          6.28 |
 
-### Quick proportions with conficence intervals
+## Quick proportions with conficence intervals
 
 There are three functions that will provide quick statistics for
 different rates based on binomial estimates of proportions from
@@ -177,12 +177,12 @@ case_fatality_rate_df(ebola_sim_clean$linelist,
 #> # A tibble: 3 x 5
 #>   gender deaths population   cfr ci            
 #>   <fct>   <int>      <int> <dbl> <chr>         
-#> 1 f        1291       2934  44.0 (42.21--45.80)
-#> 2 m        1273       2895  44.0 (42.17--45.79)
-#> 3 Total    2564       5829  44.0 (42.72--45.26)
+#> 1 f        1291       2280  56.6 (54.58--58.64)
+#> 2 m        1273       2247  56.7 (54.59--58.69)
+#> 3 Total    2564       4527  56.6 (55.19--58.08)
 ```
 
-### Inline functions
+## Inline functions
 
 The inline functions make it easier to print estimates with confidence
 intervals in reports with the correct number of digits.
@@ -205,7 +205,7 @@ refer to `estimate`, `lower`, and `upper` column positions or names.
     write: `fmt_count(ebola_sim_clean$linelist, gender == "f", hospital
     == "Rokupa Hospital")` and it would produce: 210 (3.6%)
 
-### Confidence interval manipulation
+## Confidence interval manipulation
 
 The confidence interval manipulation functions take in a data frame and
 combine their confidence intervals into a single character string much
@@ -251,7 +251,7 @@ merge_ci_df(df, e = 2)
 #> 5          am 0.155814790 (-0.61--0.93)
 ```
 
-### Age categories
+## Age categories
 
 A couple of functions are dedicated to constructing age categories and
 partitioning them into separate chunks.
