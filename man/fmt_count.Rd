@@ -11,6 +11,9 @@ fmt_count(x, ...)
 
 \item{...}{an expression or series of expressions to pass to \code{\link[dplyr:filter]{dplyr::filter()}}}
 }
+\value{
+a one-element character vector of the format "n (\%)"
+}
 \description{
 These functions will give proportions for different variables inline.
 }

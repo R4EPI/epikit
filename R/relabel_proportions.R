@@ -10,6 +10,7 @@
 #' @param ... a series of keys and values to replace columns that match specific
 #'   patterns.
 #' @export
+#' @return a data frame.
 #' @author Zhian N. Kamvar
 #' @examples
 #'

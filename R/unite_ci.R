@@ -13,6 +13,9 @@
 #' @param m100 `TRUE` if the result should be multiplied by 100
 #' @param percent `TRUE` if the result should have a percent symbol added.
 #' @param ci `TRUE` if the result should include "CI" within the braces (defaults to FALSE)
+#' 
+#' @return a modified data frame with merged columns or one additional column
+#'   representing the estimate and confidence interval
 #'
 #' @export
 #' @examples

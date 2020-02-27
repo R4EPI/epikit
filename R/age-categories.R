@@ -24,6 +24,8 @@
 #' you want to have after your highest age group. The default is "+" producing
 #' e.g. 80+
 #'
+#' @return a factor representing age ranges, open at the upper end of the range.
+#'
 #' @export
 #' @examples
 #'
@@ -44,8 +46,6 @@
 #'   table()
 #' })
 #' }
-
-
 age_categories <- function(x, breakers = NULL, lower = 0, upper = NULL, by = 10,
                            separator = "-", ceiling = FALSE, above.char = "+") {
 
