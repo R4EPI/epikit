@@ -128,7 +128,7 @@ case_fatality_rate_df <- function(x, deaths, group = NULL, conf_level = 0.95,
       digits
     )
     res <- tibble::add_row(res,
-      !!qgroup := "Total",
+      !!qgroup := factor("Total"),
       deaths = tot$deaths,
       population = tot$population,
       cfr = tot$cfr
