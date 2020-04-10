@@ -1,6 +1,6 @@
 Package: epikit
 Title: Miscellaneous Tools for the 'R4Epis' Project
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     c(person(given = "Zhian N.",
              family = "Kamvar",
@@ -45,8 +45,6 @@ Suggests:
     magrittr,
     rmarkdown
 Additional_repositories: https://r4epi.github.io/drat
-Remotes:
-  R4EPI/epidict
-URL: https://github.com/R4EPI/epikit
+URL: https://github.com/R4EPI/epikit, https://r4epis.netlify.com, https://r4epi.github.io/epikit
 BugReports: https://github.com/R4EPI/epikit/issues
 VignetteBuilder: knitr

@@ -14,7 +14,7 @@
 #'
 #' @param conf_level a number representing the confidence level for which to
 #'   calculate the confidence interval. Defaults to 0.95, representing a 95%
-#'   confidence interval.
+#'   confidence interval using [binom::binom.wilson()]
 #'
 #' @param multiplier The base by which to multiply the output:
 #'  - `multiplier = 1`: ratio between 0 and 1
@@ -27,7 +27,13 @@
 #'   the total value across all groups.
 #'
 #' @param digits if `mergeCI = TRUE`, this determines how many digits are printed
+#' 
+#' @return a data frame with five columns that represent the numerator,
+#'   denominator, rate, lower bound, and upper bound.
 #'
+#'  - `attack_rate()`: cases, population, ar, lower, upper
+#'  - `case_fatality_rate()`: deaths, population, cfr, lower, upper
+#'  
 #' @export
 #'
 #' @rdname attack_rate
@@ -100,10 +106,15 @@ case_fatality_rate_df <- function(x, deaths, group = NULL, conf_level = 0.95,
   # This creates a list column for the case fatality rate based on the
   # calculated deaths and population before... so this means that
   # THE ORDER OF THE STATEMENTS MATTER
+  # 
+  # Wed Feb 19 09:25:26 2020 ---------------------------------------------
+  # This was modified to count the population for the non-missing cases, 
+  # assuming the deaths columns would either be TRUE, FALSE, or NA for 
+  # a death, recovery, or undetermined. 
   res <- dplyr::summarise(
     x,
     !!quote(deaths) := sum(!!qdeath, na.rm = TRUE),
-    !!quote(population) := dplyr::n(),
+    !!quote(population) := dplyr::n() - sum(is.na(!!qdeath)),
     !!quote(cfr) := list(case_fatality_rate(
       .data$deaths,
       .data$population,
@@ -111,11 +122,11 @@ case_fatality_rate_df <- function(x, deaths, group = NULL, conf_level = 0.95,
       multiplier,
       mergeCI,
       digits
-    )[-(1:2)])
+    )[-(1:2)]) # This here is because I don't really need the first two columns.
   )
 
   # unnesting the list column
-  res <- tidyr::unnest(res, .data$cfr)
+  res <- tidyr::unnest(res, cols = "cfr")
 
   # adding the total if there was grouping
   if (add_total && wants_grouping) {

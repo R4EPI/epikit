@@ -3,7 +3,6 @@ This is a product of the R4EPIs project; learn more at <https://r4epis.netlify.c
 
 ## Installation
 
-<!--
 You can install {epikit} from CRAN:
 
 ``` r
@@ -14,11 +13,11 @@ install.packages("epikit")
 <!--
 NOTE: everything inside the details tag will be collapsed and effectively
 hidden from the user
+ -->
 <summary style='text-decoration: underline'>Click here for alternative installation options</summary>
 If there is a bugfix or feature that is not yet on CRAN, you can install it via
 the {drat} package:
 
--->
 
 You can install {epikit} from the R4EPI repository:
 
@@ -36,7 +35,7 @@ package (but there's no guarantee that it will be stable):
 remotes::install_github("R4EPI/epikit") 
 ```
 
-<!-- </details> -->
+</details>
 
 -------
 

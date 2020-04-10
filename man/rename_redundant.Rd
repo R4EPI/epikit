@@ -15,6 +15,9 @@ augment_redundant(x, ...)
 \item{...}{a series of keys and values to replace columns that match specific
 patterns.}
 }
+\value{
+a data frame.
+}
 \description{
 These function are only to be used cosmetically before kable and will
 likely return a data frame with duplicate names.

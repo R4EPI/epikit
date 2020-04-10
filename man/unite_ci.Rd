@@ -46,6 +46,10 @@ Upper.}
 
 \item{u}{the column of the upper bound (defaults to the fifth column), otherwise, a number}
 }
+\value{
+a modified data frame with merged columns or one additional column
+representing the estimate and confidence interval
+}
 \description{
 create a character column by combining estimate, lower and upper columns.
 This is similar to \code{\link[tidyr:unite]{tidyr::unite()}}.

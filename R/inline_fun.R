@@ -59,6 +59,8 @@ fmt_ci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2, percent = TRUE
 #' @param x a data frame
 #'
 #' @param ... an expression or series of expressions to pass to [dplyr::filter()]
+#' 
+#' @return a one-element character vector of the format "n (%)"
 #'
 #' @export
 #' @examples
