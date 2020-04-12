@@ -1,6 +1,6 @@
 Package: epikit
 Title: Miscellaneous Tools for the 'R4Epis' Project
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     c(person(given = "Zhian N.",
              family = "Kamvar",
