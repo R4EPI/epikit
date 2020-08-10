@@ -54,7 +54,7 @@ logical expression (see examples).}
 
 \item{conf_level}{a number representing the confidence level for which to
 calculate the confidence interval. Defaults to 0.95, representing a 95\%
-confidence interval.}
+confidence interval using \code{\link[binom:binom.wilson]{binom::binom.wilson()}}}
 
 \item{multiplier}{The base by which to multiply the output:
 \itemize{
@@ -73,6 +73,14 @@ confidence interval.}
 
 \item{add_total}{if \code{group} is not NULL, then this will add a row containing
 the total value across all groups.}
+}
+\value{
+a data frame with five columns that represent the numerator,
+denominator, rate, lower bound, and upper bound.
+\itemize{
+\item \code{attack_rate()}: cases, population, ar, lower, upper
+\item \code{case_fatality_rate()}: deaths, population, cfr, lower, upper
+}
 }
 \description{
 Calculate attack rate, case fatality rate, and mortality rate

@@ -14,7 +14,7 @@
 #'
 #' @param conf_level a number representing the confidence level for which to
 #'   calculate the confidence interval. Defaults to 0.95, representing a 95%
-#'   confidence interval.
+#'   confidence interval using [binom::binom.wilson()]
 #'
 #' @param multiplier The base by which to multiply the output:
 #'  - `multiplier = 1`: ratio between 0 and 1
@@ -27,7 +27,13 @@
 #'   the total value across all groups.
 #'
 #' @param digits if `mergeCI = TRUE`, this determines how many digits are printed
+#' 
+#' @return a data frame with five columns that represent the numerator,
+#'   denominator, rate, lower bound, and upper bound.
 #'
+#'  - `attack_rate()`: cases, population, ar, lower, upper
+#'  - `case_fatality_rate()`: deaths, population, cfr, lower, upper
+#'  
 #' @export
 #'
 #' @rdname attack_rate
@@ -116,7 +122,7 @@ case_fatality_rate_df <- function(x, deaths, group = NULL, conf_level = 0.95,
       multiplier,
       mergeCI,
       digits
-    )[-(1:2)])
+    )[-(1:2)]) # This here is because I don't really need the first two columns.
   )
 
   # unnesting the list column
@@ -133,7 +139,7 @@ case_fatality_rate_df <- function(x, deaths, group = NULL, conf_level = 0.95,
       digits
     )
     res <- tibble::add_row(res,
-      !!qgroup := "Total",
+      !!qgroup := factor("Total"),
       deaths = tot$deaths,
       population = tot$population,
       cfr = tot$cfr

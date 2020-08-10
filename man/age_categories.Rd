@@ -68,6 +68,8 @@ this means that the first level for years, months, and weeks are in
 consideration for being removed via \code{\link[forcats:fct_drop]{forcats::fct_drop()}}}
 }
 \value{
+a factor representing age ranges, open at the upper end of the range.
+
 a data frame
 }
 \description{
