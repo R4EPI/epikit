@@ -7,6 +7,11 @@ addons:
     packages:
       - libudunits2-dev
 
+r_github_packages: 
+  - r-lib/rlang
+  - r-lib/vctrs
+  - tidyverse/dplyr
+
 matrix:
   include:
     - os: linux

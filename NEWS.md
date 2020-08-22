@@ -5,6 +5,11 @@
 * update documentation
 * fix issues stemming from {tibble} > 3.0.0
 
+# epikit 0.1.1
+
+* Internal update for compatibility for tibble 1.0.0 (@krlmlr, #19)
+* Update tests for compatibility with dplyr 1.0.0 (@zkamvar, #20)
+
 # epikit 0.1.0
 
 * Added a `NEWS.md` file to track changes to the package.

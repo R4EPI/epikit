@@ -72,6 +72,7 @@ test_that("case_fatality_rate_df is equivalent to the non-df version", {
   iris_expect <- case_fatality_rate(sum(iris$Sepal.Width < 3), population = nrow(iris))
   
   expect_equal(iris_res, tibble::as_tibble(iris_expect))
+  expect_equal(as.data.frame(iris_res), as.data.frame(iris_expect))
   expect_equal(iris_res$deaths, sum(iris$Sepal.Width < 3))
   expect_equal(iris_res$population, nrow(iris))
   expect_equal(iris_res$cfr, sum(iris$Sepal.Width < 3) / nrow(iris) * 100)
