@@ -193,7 +193,7 @@ group_age_categories <- function(dat,
 
   # Add the column(s) and return
   if (one_column) {
-    res <- tibble::add_column(dat, age_category = res)
+    res <- tibble::add_column(dat, age_category = res, .name_repair = "minimal")
   } else {
     type <- dplyr::case_when(
       !is.na(da) ~ "days",
@@ -202,7 +202,7 @@ group_age_categories <- function(dat,
       TRUE       ~ "years"
     )
     type <- forcats::fct_drop(factor(type, c("days", "weeks", "months", "years")))
-    res <- tibble::add_column(dat, age_category = res, age_unit = type)
+    res <- tibble::add_column(dat, age_category = res, age_unit = type, .name_repair = "minimal")
   }
   res
 

@@ -54,7 +54,7 @@ logical expression (see examples).}
 
 \item{conf_level}{a number representing the confidence level for which to
 calculate the confidence interval. Defaults to 0.95, representing a 95\%
-confidence interval using \code{\link[binom:binom.wilson]{binom::binom.wilson()}}}
+confidence interval using \code{\link[binom:binom.confint]{binom::binom.wilson()}}}
 
 \item{multiplier}{The base by which to multiply the output:
 \itemize{

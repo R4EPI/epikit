@@ -52,7 +52,7 @@ unite_ci <- function(x, col = NULL, ..., remove = TRUE, digits = 2, m100 = TRUE,
   # remove the CI label if needed
   new_col <- if (ci) new_col else gsub("\\(CI ", "(", new_col)
   after   <- if (remove) first_pos - 1L else last_pos
-  out     <- tibble::add_column(out, !! col := new_col, .after = after)
+  out     <- tibble::add_column(out, !! col := new_col, .after = after, .name_repair = "minimal")
 
   out
 }

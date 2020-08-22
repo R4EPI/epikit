@@ -41,7 +41,7 @@ a text string in the format of "e\\% (CI l--u)"
 \description{
 This function is mainly used for placing in the text fields of Rmarkdown
 reports. You can use it by writing it in something like this:
-\preformatted{The CFR for Bamako is `r fmt_pci(case_fatality_rate(10, 50))`}
+\preformatted{The CFR for Bamako is `` `r fmt_pci(case_fatality_rate(10, 50))` ``}
 which will render like this: "The CFR for Bamako is 20.00\\% (CI 11.24--33.04)"
 }
 \examples{
