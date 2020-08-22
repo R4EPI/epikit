@@ -69,7 +69,7 @@ fmt_ci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2, percent = TRUE
 #' fmt_count(iris, Species == "virginica")
 fmt_count <- function(x, ...) {
   stopifnot(is.data.frame(x))
-  f <- dplyr::filter(x, ...)
+  f <- dplyr::filter(dplyr::as_tibble(x), ...)
   f <- dplyr::count(f)
   prop <- f$n / nrow(x)
   sprintf("%d (%s)", f$n, scales::percent(prop, accuracy = 0.1))
