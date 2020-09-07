@@ -1,15 +1,11 @@
+This is a maintenance release
+
 ## Test environments
 
-* local OS X install, R 3.6.2
-* ubuntu 14.04 (on travis-ci), R 3.6.2
-* win-builder (devel and release)
+* local macOS install, R 4.0.2
+* ubuntu 16.04 (on GitHub Actions), R 4.0.2, devel, 3.6
+* windows (devel, release, and 3.6)
 
 ## R CMD check results
 
-0 errors | 0 warnings | 2 notes
-
-* This is a new release.
-* Suggests or Enhances not in mainstream repositories:
-  epidict
-Availability using Additional_repositories specification:
-  epidict   yes   https://r4epi.github.io/drat
+0 errors | 0 warnings | 0 notes
