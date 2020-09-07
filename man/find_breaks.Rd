@@ -9,7 +9,7 @@ find_breaks(n, breaks = 4, snap = 1, ceiling = FALSE)
 \arguments{
 \item{n}{a number to calcluate breaks for}
 
-\item{breaks}{the maximum number of segements you want to have}
+\item{breaks}{the maximum number of segments you want to have}
 
 \item{snap}{the number defining where to snap to the nearest factor}
 
