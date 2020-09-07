@@ -9,12 +9,11 @@ epikit
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/epikit)](https://CRAN.R-project.org/package=epikit)
-[![Appveyor build
-status](https://ci.appveyor.com/api/projects/status/gqx0kvytrrd5elbg?svg=true)](https://ci.appveyor.com/project/zkamvar/epikit)
-[![Travis build
 status](https://travis-ci.org/R4EPI/epikit.svg?branch=master)](https://travis-ci.org/R4EPI/epikit)
 [![Codecov test
 coverage](https://codecov.io/gh/R4EPI/epikit/branch/master/graph/badge.svg)](https://codecov.io/gh/R4EPI/epikit?branch=master)
+[![R build
+status](https://github.com/R4EPI/epikit/workflows/R-CMD-check/badge.svg)](https://github.com/R4EPI/epikit/actions)
 <!-- badges: end -->
 
 The goal of {epikit} is to provide miscellaneous functions for This is a
@@ -89,10 +88,10 @@ These functions all modify the appearance of a table displayed in a
 report and work best with the `knitr::kable()` function.
 
   - `rename_redundant()` renames redundant columns with a single name.
-    (e.g. `hopitalized_percent` and `confirmed_percent` can both be
+    (e.g. `hopitalized_percent` and `confirmed_percent` can both be
     renamed to `%`)
   - `augment_redundant()` is similar to `rename_redundant()`, but it
-    modifies the redundant column names (e.g. `hospitalized_n` and
+    modifies the redundant column names (e.g. `hospitalized_n` and
     `confirmed_n` can become `hospitalized (n)` and `confirmed (n)`)
   - `merge_ci()` combines estimate, lower bound, and upper bound columns
     into a single column.
@@ -102,6 +101,11 @@ report and work best with the `knitr::kable()` function.
 ``` r
 library("knitr")
 library("magrittr")
+#> 
+#> Attaching package: 'magrittr'
+#> The following objects are masked from 'package:testthat':
+#> 
+#>     equals, is_less_than, not
 df <- data.frame(
   `a n` = 1:6,
   `a prop` = round((1:6) / 6, 2),
@@ -187,8 +191,8 @@ case_fatality_rate_df(ebola_sim_clean$linelist,
 The inline functions make it easier to print estimates with confidence
 intervals in reports with the correct number of digits.
 
-  - `fmt_ci()` formats confidence intervals from three numbers. (e.g.
-    `fmt_ci(50, 10, 80)` produces 50.00% (CI 10.00–80.00)
+  - `fmt_ci()` formats confidence intervals from three numbers.
+    (e.g. `fmt_ci(50, 10, 80)` produces 50.00% (CI 10.00–80.00)
   - `fmt_pci()` formats confidence intervals from three fractions,
     multiplying by 100 beforehand.
 

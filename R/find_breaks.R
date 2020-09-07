@@ -1,7 +1,7 @@
 #' Automatically calculate breaks for a number
 #'
 #' @param n a number to calcluate breaks for
-#' @param breaks the maximum number of segements you want to have
+#' @param breaks the maximum number of segments you want to have
 #' @param snap the number defining where to snap to the nearest factor
 #' @param ceiling if `TRUE`, n is included in the breaks
 #'

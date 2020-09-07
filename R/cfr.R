@@ -142,7 +142,8 @@ case_fatality_rate_df <- function(x, deaths, group = NULL, conf_level = 0.95,
       !!qgroup := factor("Total"),
       deaths = tot$deaths,
       population = tot$population,
-      cfr = tot$cfr
+      cfr = tot$cfr, 
+      .name_repair = "minimal"
     )
     # merge CI gives different numbers of columns, this accounts for that.
     if (mergeCI) {

@@ -1,3 +1,10 @@
+# epikit 0.1.2
+
+* require version of {dplyr} to be >= 1.0.2
+* require version of {tibble} to be >= 3.0.0
+* update documentation
+* fix issues stemming from {tibble} > 3.0.0
+
 # epikit 0.1.1
 
 * Internal update for compatibility for tibble 1.0.0 (@krlmlr, #19)
