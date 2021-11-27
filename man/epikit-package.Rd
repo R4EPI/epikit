@@ -16,7 +16,7 @@ Useful links:
 \itemize{
   \item \url{https://github.com/R4EPI/epikit}
   \item \url{https://r4epis.netlify.com}
-  \item \url{https://r4epi.github.io/epikit}
+  \item \url{https://r4epi.github.io/epikit/}
   \item Report bugs at \url{https://github.com/R4EPI/epikit/issues}
 }
 
