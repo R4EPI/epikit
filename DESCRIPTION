@@ -1,5 +1,5 @@
 Package: epikit
-Title: Miscellaneous Tools for the 'R4Epis' Project
+Title: Miscellaneous helper tools for epidemiologists
 Version: 0.1.2
 Authors@R: 
     c(person(given = "Zhian N.",
@@ -11,16 +11,19 @@ Authors@R:
              family = "Schumacher",
              role = "aut",
              email = "mai@dirk-schumacher.net"),
-      person(given = "Alex",
+      person(given = "Alexander",
              family = "Spina",
-             role = "ctb"),
+             email = "alexfspina@gmail.com", 
+             comment = c(ORCID = "0000-0001-8425-1867"),
+             role = "aut"),
       person(given = "Kate",
              family = "Doyle",
              role = "ctb"))
 Description: Contains tools for formatting inline code, renaming redundant
-  columns, aggregating age categories, and calculating proportions with
-  confidence intervals. This is part of the 'R4Epis' project
-  <https://r4epis.netlify.com>.
+  columns, aggregating age categories, adding survey weights, finding the earliest
+  date of an event, plotting z-curves, generating population counts and 
+  calculating proportions with confidence intervals. This is part of the 
+  'R4Epis' project <https://r4epis.netlify.com>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
