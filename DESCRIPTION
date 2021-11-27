@@ -20,9 +20,10 @@ Authors@R:
              family = "Doyle",
              role = "ctb"))
 Description: Contains tools for formatting inline code, renaming redundant
-  columns, aggregating age categories, and calculating proportions with
-  confidence intervals. This is part of the 'R4Epis' project
-  <https://r4epis.netlify.com>.
+  columns, aggregating age categories, adding survey weights, finding the earliest
+  date of an event, plotting z-curves, generating population counts and 
+  calculating proportions with confidence intervals. This is part of the 
+  'R4Epis' project <https://r4epis.netlify.com>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
