@@ -1,4 +1,4 @@
-The goal of {epikit} is to provide miscellaneous functions for 
+The goal of {epikit} is to provide miscellaneous functions for applied epidemiologists. 
 This is a product of the R4EPIs project; learn more at <https://r4epis.netlify.com>.
 
 ## Installation
@@ -43,48 +43,32 @@ remotes::install_github("R4EPI/epikit")
 library("epikit")
 ```
 
-The {epikit} was primarily designed to house convenience functions for field
+The {epikit} was primarily designed to house convenience functions for applied
 epidemiologists to use in tidying their reports. The functions in {epikit} come
 in a few categories:
 
-## Give me a break
+## Age categories
 
-If you need a quick function to determine the number of breaks you need for a
-color scale, you can use `find_breaks()`. This will always start from 1, so that
-you can include zero in your scale when you need to.
+A couple of functions are dedicated to constructing age categories and partitioning them into separate chunks.
 
-```{r find_breaks}
-find_breaks(100) # four breaks from 1 to 100
-find_breaks(100, snap = 20) # four breaks, snap to the nearest 20
-find_breaks(100, snap = 20, ceiling = TRUE) # include the highest number
-```
+ - `age_categories()` takes in a vector of numbers and returns formatted age categories.
+ - `group_age_categories()` will take a data frame with different age
+   categories in columns (e.g. years, months, weeks) and combine them into a
+   single column, selecting the column with the lowest priority.
 
-## Table modification
-
-These functions all modify the appearance of a table displayed in a report and
-work best with the `knitr::kable()` function.
-
- - `rename_redundant()` renames redundant columns with a single name. (e.g. `hopitalized_percent` and `confirmed_percent` can both be renamed to `%`)
- - `augment_redundant()` is similar to `rename_redundant()`, but it modifies the redundant column names (e.g. `hospitalized_n` and `confirmed_n` can become `hospitalized (n)` and `confirmed (n)`)
- - `merge_ci()` combines estimate, lower bound, and upper bound columns into a single column.
-
-```{r table_mods, results = 'asis', eval = requireNamespace("knitr") && requireNamespace("magrittr")}
+```{r ages, eval = requireNamespace("knitr") && requireNamespace("magrittr")}
 library("knitr")
 library("magrittr")
+
+set.seed(1)
+x <- sample(0:100, 20, replace = TRUE)
+y <- ifelse(x < 2, sample(48, 20, replace = TRUE), NA)
 df <- data.frame(
-  `a n` = 1:6,
-  `a prop` = round((1:6) / 6, 2),
-  `a deff` = round(pi, 2),
-  `b n` = 6:1,
-  `b prop` = round((6:1) / 6, 2),
-  `b deff` = round(pi * 2, 2),
-  check.names = FALSE
+  age_years = age_categories(x, upper = 80), 
+  age_months = age_categories(y, upper = 16, by = 6)
 )
-knitr::kable(df)
-df %>%
-  rename_redundant("%" = "prop", "Design Effect" = "deff") %>%
-  augment_redundant(" (n)" = " n$") %>%
-  knitr::kable()
+df %>% 
+  group_age_categories(years = age_years, months = age_months)
 ```
 
 ## Quick proportions with conficence intervals
@@ -162,24 +146,74 @@ unite_ci(df, "slope (CI)", estimate, lower, upper, m100 = FALSE, percent = FALSE
 merge_ci_df(df, e = 2)
 ```
 
-## Age categories
+## Give me a break
 
-A couple of functions are dedicated to constructing age categories and partitioning them into separate chunks.
+If you need a quick function to determine the number of breaks you need for a
+grouping or color scale, you can use `find_breaks()`. This will always start 
+from 1, so that you can include zero in your scale when you need to.
 
- - `age_categories()` takes in a vector of numbers and returns formatted age categories.
- - `group_age_categories()` will take a data frame with different age
-   categories in columns (e.g. years, months, weeks) and combine them into a
-   single column, selecting the column with the lowest priority.
-
-```{r ages}
-set.seed(1)
-x <- sample(0:100, 20, replace = TRUE)
-y <- ifelse(x < 2, sample(48, 20, replace = TRUE), NA)
-df <- data.frame(
-  age_years = age_categories(x, upper = 80), 
-  age_months = age_categories(y, upper = 16, by = 6)
-)
-df %>% 
-  group_age_categories(years = age_years, months = age_months)
+```{r find_breaks}
+find_breaks(100) # four breaks from 1 to 100
+find_breaks(100, snap = 20) # four breaks, snap to the nearest 20
+find_breaks(100, snap = 20, ceiling = TRUE) # include the highest number
 ```
+
+
+## Pull together population counts
+
+To quickly pull together population counts for use in surveys or demographic 
+pyramids the `gen_population()` function can help. 
+If you only know the proportions in each group the function will convert this to 
+counts for you - whereas if you have counts, you can type those in directly. 
+The default proportions are based on Doctors Without Borders general emergency 
+intervention standard values.
+
+```{r population_propotions}
+# get population counts based on proportion, stratified
+gen_population(groups = c("0-4","5-14","15-29","30-44","45+"), 
+               strata = c("Male", "Female"), 
+               proportions = c(0.079, 0.134, 0.139, 0.082, 0.067))
+```
+
+Type in counts directly to get the groups in a data frame. 
+
+```{r}
+
+# get population counts based on counts, stratified - type out counts
+# for each group and strata
+gen_population(groups = c("0-4","5-14","15-29","30-44","45+"), 
+               strata = c("Male", "Female"), 
+               counts = c(20, 10, 30, 40, 0, 0, 40, 30, 20, 20))
+
+```
+
+
+## Table modification
+
+These functions all modify the appearance of a table displayed in a report and
+work best with the `knitr::kable()` function.
+
+ - `rename_redundant()` renames redundant columns with a single name. (e.g. `hopitalized_percent` and `confirmed_percent` can both be renamed to `%`)
+ - `augment_redundant()` is similar to `rename_redundant()`, but it modifies the redundant column names (e.g. `hospitalized_n` and `confirmed_n` can become `hospitalized (n)` and `confirmed (n)`)
+ - `merge_ci()` combines estimate, lower bound, and upper bound columns into a single column.
+
+```{r table_mods, results = 'asis'}
+
+df <- data.frame(
+  `a n` = 1:6,
+  `a prop` = round((1:6) / 6, 2),
+  `a deff` = round(pi, 2),
+  `b n` = 6:1,
+  `b prop` = round((6:1) / 6, 2),
+  `b deff` = round(pi * 2, 2),
+  check.names = FALSE
+)
+knitr::kable(df)
+df %>%
+  rename_redundant("%" = "prop", "Design Effect" = "deff") %>%
+  augment_redundant(" (n)" = " n$") %>%
+  knitr::kable()
+```
+
+
 
