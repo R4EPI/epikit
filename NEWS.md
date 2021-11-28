@@ -1,3 +1,9 @@
+# epikit 0.1.3
+* migrated functions and tests from {sitrep} including: `add_weights_cluster()`, 
+  `add_weights_strata()`, `find_date_cause()`, `find_end_date()`, 
+  `find_start_date()`, `gen_polygon()`, `gen_population()` and `zcurve()` (@aspina7, #22)
+* update documentation and pkgdown site (@aspina7, #23)
+
 # epikit 0.1.2
 
 * require version of {dplyr} to be >= 1.0.2
