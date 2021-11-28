@@ -2,14 +2,12 @@ epikit
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/epikit)](https://CRAN.R-project.org/package=epikit)
-status](https://travis-ci.org/R4EPI/epikit.svg?branch=master)](https://travis-ci.org/R4EPI/epikit)
 [![Codecov test
 coverage](https://codecov.io/gh/R4EPI/epikit/branch/master/graph/badge.svg)](https://codecov.io/gh/R4EPI/epikit?branch=master)
 [![R build
@@ -29,15 +27,16 @@ install.packages("epikit")
 ```
 
 <details>
-
 <!--
 NOTE: everything inside the details tag will be collapsed and effectively
 hidden from the user
  -->
+<summary style="text-decoration: underline">
+Click here for alternative installation options
+</summary>
 
-<summary style='text-decoration: underline'>Click here for alternative
-installation options</summary> If there is a bugfix or feature that is
-not yet on CRAN, you can install it via the {drat} package:
+If there is a bugfix or feature that is not yet on CRAN, you can install
+it via the {drat} package:
 
 You can install {epikit} from the R4EPI repository:
 
@@ -57,7 +56,7 @@ remotes::install_github("R4EPI/epikit")
 
 </details>
 
------
+------------------------------------------------------------------------
 
 ``` r
 library("epikit")
@@ -87,25 +86,18 @@ find_breaks(100, snap = 20, ceiling = TRUE) # include the highest number
 These functions all modify the appearance of a table displayed in a
 report and work best with the `knitr::kable()` function.
 
-  - `rename_redundant()` renames redundant columns with a single name.
+-   `rename_redundant()` renames redundant columns with a single name.
     (e.g. `hopitalized_percent` and `confirmed_percent` can both be
     renamed to `%`)
-  - `augment_redundant()` is similar to `rename_redundant()`, but it
+-   `augment_redundant()` is similar to `rename_redundant()`, but it
     modifies the redundant column names (e.g. `hospitalized_n` and
     `confirmed_n` can become `hospitalized (n)` and `confirmed (n)`)
-  - `merge_ci()` combines estimate, lower bound, and upper bound columns
+-   `merge_ci()` combines estimate, lower bound, and upper bound columns
     into a single column.
-
-<!-- end list -->
 
 ``` r
 library("knitr")
 library("magrittr")
-#> 
-#> Attaching package: 'magrittr'
-#> The following objects are masked from 'package:testthat':
-#> 
-#>     equals, is_less_than, not
 df <- data.frame(
   `a n` = 1:6,
   `a prop` = round((1:6) / 6, 2),
@@ -119,7 +111,7 @@ knitr::kable(df)
 ```
 
 | a n | a prop | a deff | b n | b prop | b deff |
-| --: | -----: | -----: | --: | -----: | -----: |
+|----:|-------:|-------:|----:|-------:|-------:|
 |   1 |   0.17 |   3.14 |   6 |   1.00 |   6.28 |
 |   2 |   0.33 |   3.14 |   5 |   0.83 |   6.28 |
 |   3 |   0.50 |   3.14 |   4 |   0.67 |   6.28 |
@@ -135,7 +127,7 @@ df %>%
 ```
 
 | a (n) |    % | Design Effect | b (n) |    % | Design Effect |
-| ----: | ---: | ------------: | ----: | ---: | ------------: |
+|------:|-----:|--------------:|------:|-----:|--------------:|
 |     1 | 0.17 |          3.14 |     6 | 1.00 |          6.28 |
 |     2 | 0.33 |          3.14 |     5 | 0.83 |          6.28 |
 |     3 | 0.50 |          3.14 |     4 | 0.67 |          6.28 |
@@ -149,11 +141,9 @@ There are three functions that will provide quick statistics for
 different rates based on binomial estimates of proportions from
 `binom::binom.wilson()`
 
-  - `attack_rate()`
-  - `case_fatality_rate()`
-  - `mortality_rate()`
-
-<!-- end list -->
+-   `attack_rate()`
+-   `case_fatality_rate()`
+-   `mortality_rate()`
 
 ``` r
 attack_rate(10, 50)
@@ -191,9 +181,9 @@ case_fatality_rate_df(ebola_sim_clean$linelist,
 The inline functions make it easier to print estimates with confidence
 intervals in reports with the correct number of digits.
 
-  - `fmt_ci()` formats confidence intervals from three numbers.
+-   `fmt_ci()` formats confidence intervals from three numbers.
     (e.g. `fmt_ci(50, 10, 80)` produces 50.00% (CI 10.00–80.00)
-  - `fmt_pci()` formats confidence intervals from three fractions,
+-   `fmt_pci()` formats confidence intervals from three fractions,
     multiplying by 100 beforehand.
 
 The `_df` suffixes (`fmt_ci_df()`, `fmt_pci_df()`) will print the
@@ -203,11 +193,12 @@ to work with the outputs of the rates functions. For example,
 All of these suffixes will have three options `e`, `l`, and `u`. These
 refer to `estimate`, `lower`, and `upper` column positions or names.
 
-  - `fmt_count()` will count a condition in a data frame and present the
+-   `fmt_count()` will count a condition in a data frame and present the
     number and percent of `TRUE` values. For example, if you wanted to
     count the number of women patients from Rokupa hospital, you would
-    write: `fmt_count(ebola_sim_clean$linelist, gender == "f", hospital
-    == "Rokupa Hospital")` and it would produce: 210 (3.6%)
+    write:
+    `fmt_count(ebola_sim_clean$linelist, gender == "f", hospital == "Rokupa Hospital")`
+    and it would produce: 210 (3.6%)
 
 ## Confidence interval manipulation
 
@@ -215,10 +206,10 @@ The confidence interval manipulation functions take in a data frame and
 combine their confidence intervals into a single character string much
 like the inline functions do. There are two flavors:
 
-  - `merge_ci_df()` and `merge_pci_df()` will merge just the values of
+-   `merge_ci_df()` and `merge_pci_df()` will merge just the values of
     the confidence interval and leave the estimate alone. Note: this
     WILL remove the lower and upper columns.
-  - `unite_ci()` merges both the confidence interval and the estimate
+-   `unite_ci()` merges both the confidence interval and the estimate
     into a single character column. This generally has more options than
     `merge_ci()`
 
@@ -260,13 +251,11 @@ merge_ci_df(df, e = 2)
 A couple of functions are dedicated to constructing age categories and
 partitioning them into separate chunks.
 
-  - `age_categories()` takes in a vector of numbers and returns
+-   `age_categories()` takes in a vector of numbers and returns
     formatted age categories.
-  - `group_age_categories()` will take a data frame with different age
+-   `group_age_categories()` will take a data frame with different age
     categories in columns (e.g. years, months, weeks) and combine them
     into a single column, selecting the column with the lowest priority.
-
-<!-- end list -->
 
 ``` r
 set.seed(1)
