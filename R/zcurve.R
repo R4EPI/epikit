@@ -49,8 +49,8 @@ zcurve <- function(x, zscore) {
                        values = c("Observed" = "red",
                                   "WHO standard" = "dark grey")
     ) +
-    scale_x_continuous(limits = c(-6, 6), expand = expand_scale()) +
-    scale_y_continuous(labels = scales::percent_format(), expand = expand_scale(add = 0.02)) +
+    scale_x_continuous(limits = c(-6, 6), expand = expansion()) +
+    scale_y_continuous(labels = scales::percent_format(), expand = expansion(add = 0.02)) +
     labs(
          x = "Z-score",
          y = sprintf("Proportion of children\n(n = %d)", nrow(x))
