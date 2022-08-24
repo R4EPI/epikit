@@ -69,14 +69,18 @@ Will multiply the inverse chances of a cluster being selected, a household
 being selected within a cluster, and an individual being selected within a
 household.
 
-As follows:\preformatted{((clusters available) / (clusters surveyed)) *
+As follows:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{((clusters available) / (clusters surveyed)) *
 ((households in each cluster) / (households surveyed in each cluster)) *
 ((individuals eligible in each household) / (individuals interviewed))
-}
+}\if{html}{\out{</div>}}
 
 In the case where both ignore_cluster and ignore_household are TRUE, this
-will simply be:\preformatted{1 * 1 * (individuals eligible in each household) / (individuals interviewed)
-}
+will simply be:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{1 * 1 * (individuals eligible in each household) / (individuals interviewed)
+}\if{html}{\out{</div>}}
 }
 \examples{
 

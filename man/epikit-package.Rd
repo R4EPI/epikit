@@ -6,11 +6,7 @@
 \alias{epikit-package}
 \title{epikit: Miscellaneous helper tools for epidemiologists}
 \description{
-Contains tools for formatting inline code, renaming redundant
-  columns, aggregating age categories, adding survey weights, finding the earliest
-  date of an event, plotting z-curves, generating population counts and 
-  calculating proportions with confidence intervals. This is part of the 
-  'R4Epis' project <https://r4epis.netlify.com>.
+Contains tools for formatting inline code, renaming redundant columns, aggregating age categories, adding survey weights, finding the earliest date of an event, plotting z-curves, generating population counts and calculating proportions with confidence intervals. This is part of the 'R4Epis' project \url{https://r4epis.netlify.com}.
 }
 \seealso{
 Useful links:
