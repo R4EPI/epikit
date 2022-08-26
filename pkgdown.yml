@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   intro: intro.html
-last_built: 2022-08-26T09:08Z
+last_built: 2022-08-26T09:15Z
 urls:
   reference: https://r4epi.github.io/epikit/reference
   article: https://r4epi.github.io/epikit/articles
