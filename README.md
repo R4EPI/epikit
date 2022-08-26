@@ -20,7 +20,7 @@ epidemiologists. This is a product of the R4EPIs project; learn more at
 
 ## Installation
 
-You can install {epikit} from CRAN:
+You can install {epikit} from CRAN (see details for the latest version):
 
 ``` r
 install.packages("epikit")
@@ -37,14 +37,6 @@ Click here for alternative installation options
 
 If there is a bugfix or feature that is not yet on CRAN, you can install
 it via the {drat} package:
-
-You can install {epikit} from the R4EPI repository:
-
-``` r
-# install.packages("drat")
-drat::addRepo("R4EPI")
-install.packages("epikit")
-```
 
 You can also install the in-development version from GitHub using the
 {remotes} package (but there’s no guarantee that it will be stable):
@@ -146,7 +138,7 @@ case_fatality_rate_df(ebola_sim_clean$linelist,
   add_total = TRUE,
   mergeCI = TRUE
 )
-#> # A tibble: 3 x 5
+#> # A tibble: 3 × 5
 #>   gender deaths population   cfr ci            
 #>   <fct>   <int>      <int> <dbl> <chr>         
 #> 1 f        1291       2280  56.6 (54.58--58.64)
@@ -256,7 +248,7 @@ gen_population(groups = c("0-4","5-14","15-29","30-44","45+"),
                proportions = c(0.079, 0.134, 0.139, 0.082, 0.067))
 #> Warning in gen_population(groups = c("0-4", "5-14", "15-29", "30-44", "45+"), : Given proportions (or counts) is not the same as
 #> groups multiplied by strata length, they will be repeated to match
-#> # A tibble: 10 x 4
+#> # A tibble: 10 × 4
 #>    groups strata proportions     n
 #>    <fct>  <fct>        <dbl> <dbl>
 #>  1 0-4    Male         0.079    79
@@ -274,12 +266,13 @@ gen_population(groups = c("0-4","5-14","15-29","30-44","45+"),
 Type in counts directly to get the groups in a data frame.
 
 ``` r
+
 # get population counts based on counts, stratified - type out counts
 # for each group and strata
 gen_population(groups = c("0-4","5-14","15-29","30-44","45+"), 
                strata = c("Male", "Female"), 
                counts = c(20, 10, 30, 40, 0, 0, 40, 30, 20, 20))
-#> # A tibble: 10 x 4
+#> # A tibble: 10 × 4
 #>    groups strata proportions     n
 #>    <fct>  <fct>        <dbl> <dbl>
 #>  1 0-4    Male        0.0952    20
@@ -309,6 +302,7 @@ report and work best with the `knitr::kable()` function.
     into a single column.
 
 ``` r
+
 df <- data.frame(
   `a n` = 1:6,
   `a prop` = round((1:6) / 6, 2),
