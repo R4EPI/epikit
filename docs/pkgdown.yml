@@ -1,7 +1,10 @@
-pandoc: 2.11.2
-pkgdown: 1.6.1
+pandoc: '2.18'
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   intro: intro.html
-last_built: 2021-11-28T11:16Z
+last_built: 2022-08-26T09:03Z
+urls:
+  reference: https://r4epi.github.io/epikit/reference
+  article: https://r4epi.github.io/epikit/articles
 
