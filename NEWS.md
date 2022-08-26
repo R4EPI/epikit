@@ -1,3 +1,6 @@
+# epikit 0.1.4 
+* unecessary bump because {pkgdown}
+
 # epikit 0.1.3
 * migrated functions and tests from {sitrep} including: `add_weights_cluster()`, 
   `add_weights_strata()`, `find_date_cause()`, `find_end_date()`, 
