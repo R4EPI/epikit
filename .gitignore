@@ -41,3 +41,4 @@ vignettes/*.pdf
 # README html preview
 README.html
 inst/doc
+docs

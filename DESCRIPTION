@@ -49,6 +49,8 @@ Suggests:
     magrittr,
     rmarkdown
 Additional_repositories: https://r4epi.github.io/drat
-URL: https://github.com/R4EPI/epikit, https://r4epis.netlify.com, https://r4epi.github.io/epikit/
+URL: https://github.com/R4EPI/epikit,
+    https://r4epis.netlify.com,
+    https://r4epi.github.io/epikit/
 BugReports: https://github.com/R4EPI/epikit/issues
 VignetteBuilder: knitr

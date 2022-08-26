@@ -1,48 +1,43 @@
+url: https://r4epi.github.io/epikit/
 destination: docs
-
 reference:
+- title: Format age categories
+  desc: ~
+  contents: '`age_categories`'
+- title: Calculate proportions
+  desc: Use these functions to calculate tables of proportions using `binom::binom.wilson()`
+  contents: '`attack_rate`'
+- title: Format proportions and confidence intervals inline
+  desc: Use these functions to produce inline text in Rmarkdown documents
+  contents:
+  - '`fmt_ci`'
+  - '`fmt_count`'
+- title: Generate breaks for grouping or color scales
+  desc: ~
+  contents: '`find_breaks`'
+- title: Generate population counts
+  desc: ~
+  contents: '`gen_population`'
+- title: Find first date/cause of an event beyond a cutoff over several columns
+  desc: Use these functions to find what event occured first and when (e.g. died,
+    lost to follow-up, survived)
+  contents: '`find_date_cause`'
+- title: Add population weights to complex survey design data
+  desc: ~
+  contents:
+  - '`add_weights_strata`'
+  - '`add_weights_cluster`'
+- title: Plot z-curves to compare anthropometric indicators to WHO standards
+  desc: ~
+  contents: '`zcurve`'
+- title: Modify column names
+  desc: ~
+  contents:
+  - '`rename_redundant`'
+  - '`unite_ci`'
+- title: Miscellaneous
+  desc: ~
+  contents:
+  - '`fac_from_num`'
+  - '`gen_polygon`'
 
-  - title: Format age categories
-    desc: ~
-    contents:
-    - '`age_categories`'
-  - title: Calculate proportions
-    desc: "Use these functions to calculate tables of proportions using `binom::binom.wilson()`"
-    contents:
-    - '`attack_rate`'
-  - title: Format proportions and confidence intervals inline
-    desc: "Use these functions to produce inline text in Rmarkdown documents"
-    contents:
-    - '`fmt_ci`'
-    - '`fmt_count`'
-  - title: Generate breaks for grouping or color scales
-    desc: ~
-    contents:
-    - '`find_breaks`'
-  - title: Generate population counts
-    desc: ~
-    contents:
-    - '`gen_population`'
-  - title: Find first date/cause of an event beyond a cutoff over several columns
-    desc: "Use these functions to find what event occured first and when (e.g. died, lost to follow-up, survived)"
-    contents:
-    - '`find_date_cause`'
-  - title: Add population weights to complex survey design data
-    desc: ~
-    contents:
-    - '`add_weights_strata`'
-    - '`add_weights_cluster`'
-  - title: Plot z-curves to compare anthropometric indicators to WHO standards
-    desc: ~
-    contents:
-    - '`zcurve`'
-  - title: Modify column names
-    desc: ~
-    contents:
-    - '`rename_redundant`'
-    - '`unite_ci`'
-  - title: Miscellaneous
-    desc: ~
-    contents:
-    - '`fac_from_num`'
-    - '`gen_polygon`'
