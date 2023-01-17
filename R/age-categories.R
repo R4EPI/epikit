@@ -185,9 +185,9 @@ group_age_categories <- function(dat,
 
   if (drop_empty_overlaps) {
     # Remove any overlapping levels
-    droppings <- c(if (d) levels(we)[1] else NA,
-                   if (w) levels(mo)[1] else NA,
-                   if (m) levels(ye)[1] else NA)
+    droppings <- c(if (d) levels(we)[1] else NA_character_,
+                   if (w) levels(mo)[1] else NA_character_,
+                   if (m) levels(ye)[1] else NA_character_)
     res       <- forcats::fct_drop(res, droppings)
   }
 
