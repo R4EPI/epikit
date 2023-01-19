@@ -4,7 +4,7 @@
 #' @param zscore bare name of a numeric vector containing computed zscores
 #' @return a ggplot2 object that is customisable via the ggplot2 package.
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("ggplot2")
 #' library("ggplot2")
 #' set.seed(9)
 #' dat <- data.frame(observed = rnorm(204) + runif(1),
@@ -28,6 +28,9 @@
 #'   facet_grid(treat~groups)
 zcurve <- function(x, zscore) {
 
+  if (!requireNamespace("ggplot2")) {
+    stop("`zcurve()` requires the {ggplot2} package to be installed")
+  }
   if (!is.data.frame(x)) {
     stop("x must be a data frame")
   }
@@ -39,7 +42,7 @@ zcurve <- function(x, zscore) {
   }
 
   ggplot(x) +
-    stat_density(aes(x = !! rlang::enquo(zscore), color = "Observed"), size = 1,
+    stat_density(aes(x = !! rlang::enquo(zscore), color = "Observed"), linewidth = 1,
                  geom = "line") +
     stat_function(fun     = stats::dnorm,
                   args    = list(mean = 0, sd = 1), size = 1,

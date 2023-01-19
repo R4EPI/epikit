@@ -19,12 +19,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Zhian N. Kamvar \email{zkamvar@gmail.com} (\href{https://orcid.org/0000-0003-1458-7108}{ORCID})
+\strong{Maintainer}: Alexander Spina \email{aspina@appliedepi.org} (\href{https://orcid.org/0000-0001-8425-1867}{ORCID})
 
 Authors:
 \itemize{
+  \item Zhian N. Kamvar \email{zkamvar@gmail.com} (\href{https://orcid.org/0000-0003-1458-7108}{ORCID})
   \item Dirk Schumacher \email{mai@dirk-schumacher.net}
-  \item Alexander Spina \email{alexfspina@gmail.com} (\href{https://orcid.org/0000-0001-8425-1867}{ORCID})
 }
 
 Other contributors:

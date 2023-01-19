@@ -18,6 +18,7 @@ a ggplot2 object that is customisable via the ggplot2 package.
 Create a curve comparing observed Z-scores to the WHO standard.
 }
 \examples{
+\dontshow{if (requireNamespace("ggplot2")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library("ggplot2")
 set.seed(9)
 dat <- data.frame(observed = rnorm(204) + runif(1),
@@ -39,4 +40,5 @@ dat <- data.frame(
                  )
 zcurve(dat, observed) +
   facet_grid(treat~groups)
+\dontshow{\}) # examplesIf}
 }
