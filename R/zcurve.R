@@ -28,9 +28,6 @@
 #'   facet_grid(treat~groups)
 zcurve <- function(x, zscore) {
 
-  if (!requireNamespace("ggplot2")) {
-    stop("`zcurve()` requires the {ggplot2} package to be installed")
-  }
   if (!is.data.frame(x)) {
     stop("x must be a data frame")
   }
