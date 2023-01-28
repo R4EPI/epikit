@@ -247,10 +247,9 @@ add_weights_cluster <- function(x, cl,
   temp[[surv_weight]] <- temp$indiv_chance * temp$clus_hh_chance
 
   # create a survey weight id by merging cluster and household id
-  temp <- tidyr::unite(temp, {{surv_weight_ID}}, 
-    tidyselect::all_of(clus_id_x), 
-    tidyselect::all_of(hh_id_x)
-  )
+  temp[[surv_weight_ID]] <- paste0(temp[[clus_id_x]], "_", temp[[hh_id_x]])
+  temp[[clus_id_x]] <- NULL
+  temp[[hh_id_x]] <- NULL
 
   # only keep the weight and the weight id
   temp <- dplyr::select(temp, {{surv_weight}}, {{surv_weight_ID}})
