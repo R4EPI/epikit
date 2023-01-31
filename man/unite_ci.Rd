@@ -14,12 +14,13 @@ unite_ci(
   digits = 2,
   m100 = TRUE,
   percent = FALSE,
-  ci = FALSE
+  ci = FALSE,
+  separator = "-"
 )
 
-merge_ci_df(x, e = 3, l = e + 1, u = e + 2, digits = 2)
+merge_ci_df(x, e = 3, l = e + 1, u = e + 2, digits = 2, separator = "-")
 
-merge_pci_df(x, e = 3, l = e + 1, u = e + 2, digits = 2)
+merge_pci_df(x, e = 3, l = e + 1, u = e + 2, digits = 2, separator = "-")
 }
 \arguments{
 \item{x}{a data frame with at least three columns defining an estimate, lower
@@ -39,6 +40,9 @@ Upper.}
 \item{percent}{\code{TRUE} if the result should have a percent symbol added.}
 
 \item{ci}{\code{TRUE} if the result should include "CI" within the braces (defaults to FALSE)}
+
+\item{separator}{what to separate lower and upper confidence intervals with,
+default is "-"}
 
 \item{e}{the column of the estimate (defaults to the third column). Otherwise, a number}
 

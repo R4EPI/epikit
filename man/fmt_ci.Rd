@@ -7,19 +7,43 @@
 \alias{fmt_ci_df}
 \title{Helper to format confidence interval for text}
 \usage{
-fmt_ci(e = numeric(), l = numeric(), u = numeric(), digits = 2, percent = TRUE)
+fmt_ci(
+  e = numeric(),
+  l = numeric(),
+  u = numeric(),
+  digits = 2,
+  percent = TRUE,
+  separator = "-"
+)
 
 fmt_pci(
   e = numeric(),
   l = numeric(),
   u = numeric(),
   digits = 2,
-  percent = TRUE
+  percent = TRUE,
+  separator = "-"
 )
 
-fmt_pci_df(x, e = 3, l = e + 1, u = e + 2, digits = 2, percent = TRUE)
+fmt_pci_df(
+  x,
+  e = 3,
+  l = e + 1,
+  u = e + 2,
+  digits = 2,
+  percent = TRUE,
+  separator = "-"
+)
 
-fmt_ci_df(x, e = 3, l = e + 1, u = e + 2, digits = 2, percent = TRUE)
+fmt_ci_df(
+  x,
+  e = 3,
+  l = e + 1,
+  u = e + 2,
+  digits = 2,
+  percent = TRUE,
+  separator = "-"
+)
 }
 \arguments{
 \item{e}{the column of the estimate (defaults to the third column). Otherwise, a number}
@@ -33,6 +57,9 @@ fmt_ci_df(x, e = 3, l = e + 1, u = e + 2, digits = 2, percent = TRUE)
 \item{percent}{if \code{TRUE} (default), converts the number to percent, otherwise
 it's treated as a raw value}
 
+\item{separator}{what to separate lower and upper confidence intervals with,
+default is "-"}
+
 \item{x}{a data frame}
 }
 \value{
@@ -43,7 +70,7 @@ This function is mainly used for placing in the text fields of Rmarkdown
 reports. You can use it by writing it in something like this:
 The CFR for Bamako is \code{`r fmt_ci_df(case_fatality_rate(10, 50))`} which
 will render like this:
-"The CFR for Bamako is 20.00\% (CI 11.24--33.04)"
+"The CFR for Bamako is 20.00\% (CI 11.24-33.04)"
 }
 \examples{
 

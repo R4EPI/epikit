@@ -1,9 +1,9 @@
 
 cfr <- case_fatality_rate(10, 50)
-cfr_expected <- "20.00% (CI 11.24--33.04)"
+cfr_expected <- "20.00% (CI 11.24-33.04)"
 cfr_merged <- gsub("^[0-9.% (CI]{11}", "(", cfr_expected)
 pro <- proportion(5, 50)
-pro_expected <- "10.00% (CI 4.35--21.36)"
+pro_expected <- "10.00% (CI 4.35-21.36)"
 pro_merged <- gsub("^[0-9.% (CI]{11}", "(", pro_expected)
 
 test_that("fmt_ci.default only accepts numbers", {
@@ -14,17 +14,17 @@ test_that("fmt_ci.default only accepts numbers", {
 })
 
 test_that("fmt_ci will treat missing data without messing up", {
-  expect_identical(fmt_ci(1        , NA_real_, NA_real_), "1.00% (CI NA--NA)")
-  expect_identical(fmt_ci(1        , 0       , NA_real_), "1.00% (CI 0.00--NA)")
-  expect_identical(fmt_ci(1        , 0       , Inf), "1.00% (CI 0.00--Inf)")
-  expect_identical(fmt_ci(NA_real_ , NA_real_, NA_real_), "NA (CI NA--NA)")
-  expect_identical(fmt_pci(1       , NA_real_, NA_real_), "100.00% (CI NA--NA)")
-  expect_identical(fmt_pci(NA_real_, NA_real_, NA_real_), "NA (CI NA--NA)")
+  expect_identical(fmt_ci(1        , NA_real_, NA_real_), "1.00% (CI NA-NA)")
+  expect_identical(fmt_ci(1        , 0       , NA_real_), "1.00% (CI 0.00-NA)")
+  expect_identical(fmt_ci(1        , 0       , Inf), "1.00% (CI 0.00-Inf)")
+  expect_identical(fmt_ci(NA_real_ , NA_real_, NA_real_), "NA (CI NA-NA)")
+  expect_identical(fmt_pci(1       , NA_real_, NA_real_), "100.00% (CI NA-NA)")
+  expect_identical(fmt_pci(NA_real_, NA_real_, NA_real_), "NA (CI NA-NA)")
 })
 
 test_that("fmt_ci gives expected results", {
-  expect_identical(fmt_ci(pi, pi, pi, 2), "3.14% (CI 3.14--3.14)")
-  expect_identical(fmt_ci(pi, pi, pi, 3), "3.142% (CI 3.142--3.142)")
+  expect_identical(fmt_ci(pi, pi, pi, 2), "3.14% (CI 3.14-3.14)")
+  expect_identical(fmt_ci(pi, pi, pi, 3), "3.142% (CI 3.142-3.142)")
 })
 
 test_that("fmt_p?ci_df can take data frames", {
