@@ -62,14 +62,15 @@ in {epikit} come in a few categories:
 A couple of functions are dedicated to constructing age categories and
 partitioning them into separate chunks.
 
--   `age_categories()` takes in a vector of numbers and returns
-    formatted age categories.
--   `group_age_categories()` will take a data frame with different age
-    categories in columns (e.g. years, months, weeks) and combine them
-    into a single column, selecting the column with the lowest priority.
+- `age_categories()` takes in a vector of numbers and returns formatted
+  age categories.
+- `group_age_categories()` will take a data frame with different age
+  categories in columns (e.g. years, months, weeks) and combine them
+  into a single column, selecting the column with the lowest priority.
 
 ``` r
 library("knitr")
+#> Warning: Paket 'knitr' wurde unter R Version 4.2.2 erstellt
 library("magrittr")
 
 set.seed(1)
@@ -104,70 +105,28 @@ df %>%
 #> 20     30-39       <NA>  30-39 years
 ```
 
-## Quick proportions with conficence intervals
-
-There are three functions that will provide quick statistics for
-different rates based on binomial estimates of proportions from
-`binom::binom.wilson()`
-
--   `attack_rate()`
--   `case_fatality_rate()`
--   `mortality_rate()`
-
-``` r
-attack_rate(10, 50)
-#>   cases population ar    lower    upper
-#> 1    10         50 20 11.24375 33.03711
-case_fatality_rate(2, 50)
-#>   deaths population cfr    lower    upper
-#> 1      2         50   4 1.103888 13.46009
-mortality_rate(40, 50000)
-#>   deaths population mortality per 10 000   lower    upper
-#> 1     40      50000                    8 5.87591 10.89109
-```
-
-In addition, it’s possible to rapidly calculate Case fatality rate from
-a linelist, stratified by different groups (e.g. gender):
-
-``` r
-library("outbreaks")
-case_fatality_rate_df(ebola_sim_clean$linelist, 
-  outcome == "Death", 
-  group = gender,
-  add_total = TRUE,
-  mergeCI = TRUE
-)
-#> # A tibble: 3 × 5
-#>   gender deaths population   cfr ci            
-#>   <fct>   <int>      <int> <dbl> <chr>         
-#> 1 f        1291       2280  56.6 (54.58--58.64)
-#> 2 m        1273       2247  56.7 (54.59--58.69)
-#> 3 Total    2564       4527  56.6 (55.19--58.08)
-```
-
 ## Inline functions
 
 The inline functions make it easier to print estimates with confidence
 intervals in reports with the correct number of digits.
 
--   `fmt_ci()` formats confidence intervals from three numbers.
-    (e.g. `fmt_ci(50, 10, 80)` produces 50.00% (CI 10.00–80.00)
--   `fmt_pci()` formats confidence intervals from three fractions,
-    multiplying by 100 beforehand.
+- `fmt_ci()` formats confidence intervals from three numbers.
+  (e.g. `fmt_ci(50, 10, 80)` produces 50.00% (CI 10.00-80.00)
+- `fmt_pci()` formats confidence intervals from three fractions,
+  multiplying by 100 beforehand.
 
-The `_df` suffixes (`fmt_ci_df()`, `fmt_pci_df()`) will print the
-confidence intervals for data stored in data frames. These are designed
-to work with the outputs of the rates functions. For example,
-`fmt_ci_df(attack_rate(10, 50))` will produce 20.00% (CI 11.24–33.04).
-All of these suffixes will have three options `e`, `l`, and `u`. These
-refer to `estimate`, `lower`, and `upper` column positions or names.
+<!-- 
+The `_df` suffixes (`fmt_ci_df()`, `fmt_pci_df()`) will print the confidence 
+intervals for data stored in data frames. These are designed to work with the
+outputs of the rates functions. For example, `fmt_ci_df(attack_rate(10, 50))`
+will produce . All of these suffixes will have
+three options `e`, `l`, and `u`. These refer to `estimate`, `lower`, and `upper`
+column positions or names.
 
--   `fmt_count()` will count a condition in a data frame and present the
-    number and percent of `TRUE` values. For example, if you wanted to
-    count the number of women patients from Rokupa hospital, you would
-    write:
-    `fmt_count(ebola_sim_clean$linelist, gender == "f", hospital == "Rokupa Hospital")`
-    and it would produce: 210 (3.6%)
+ - `fmt_count()` will count a condition in a data frame and present the number
+   and percent of `TRUE` values. For example, if you wanted to count the number
+    of women patients from Rokupa hospital, you would write: `fmt_count(ebola_sim_clean$linelist, gender == "f", hospital == "Rokupa Hospital")` and it would produce:  
+ -->
 
 ## Confidence interval manipulation
 
@@ -175,12 +134,12 @@ The confidence interval manipulation functions take in a data frame and
 combine their confidence intervals into a single character string much
 like the inline functions do. There are two flavors:
 
--   `merge_ci_df()` and `merge_pci_df()` will merge just the values of
-    the confidence interval and leave the estimate alone. Note: this
-    WILL remove the lower and upper columns.
--   `unite_ci()` merges both the confidence interval and the estimate
-    into a single character column. This generally has more options than
-    `merge_ci()`
+- `merge_ci_df()` and `merge_pci_df()` will merge just the values of the
+  confidence interval and leave the estimate alone. Note: this WILL
+  remove the lower and upper columns.
+- `unite_ci()` merges both the confidence interval and the estimate into
+  a single character column. This generally has more options than
+  `merge_ci()`
 
 This is useful for reporting models:
 
@@ -198,21 +157,21 @@ print(df)
 
 # unite CI has more options
 unite_ci(df, "slope (CI)", estimate, lower, upper, m100 = FALSE, percent = FALSE)
-#>      variable         slope (CI)
-#> 1 (Intercept) 0.74 (-0.77--2.26)
-#> 2        disp 0.00 (-0.00--0.01)
-#> 3          hp 0.01 (-0.00--0.01)
-#> 4          wt  1.00 (0.38--1.62)
-#> 5          am 0.16 (-0.61--0.93)
+#>      variable        slope (CI)
+#> 1 (Intercept) 0.74 (-0.77-2.26)
+#> 2        disp 0.00 (-0.00-0.01)
+#> 3          hp 0.01 (-0.00-0.01)
+#> 4          wt  1.00 (0.38-1.62)
+#> 5          am 0.16 (-0.61-0.93)
 
 # merge_ci just needs to know where the estimate is
 merge_ci_df(df, e = 2)
-#>      variable    estimate            ci
-#> 1 (Intercept) 0.740647656 (-0.77--2.26)
-#> 2        disp 0.002702925 (-0.00--0.01)
-#> 3          hp 0.005274547 (-0.00--0.01)
-#> 4          wt 1.001303136  (0.38--1.62)
-#> 5          am 0.155814790 (-0.61--0.93)
+#>      variable    estimate           ci
+#> 1 (Intercept) 0.740647656 (-0.77-2.26)
+#> 2        disp 0.002702925 (-0.00-0.01)
+#> 3          hp 0.005274547 (-0.00-0.01)
+#> 4          wt 1.001303136  (0.38-1.62)
+#> 5          am 0.155814790 (-0.61-0.93)
 ```
 
 ## Give me a break
@@ -265,6 +224,7 @@ gen_population(groups = c("0-4","5-14","15-29","30-44","45+"),
 Type in counts directly to get the groups in a data frame.
 
 ``` r
+
 # get population counts based on counts, stratified - type out counts
 # for each group and strata
 gen_population(groups = c("0-4","5-14","15-29","30-44","45+"), 
@@ -290,16 +250,17 @@ gen_population(groups = c("0-4","5-14","15-29","30-44","45+"),
 These functions all modify the appearance of a table displayed in a
 report and work best with the `knitr::kable()` function.
 
--   `rename_redundant()` renames redundant columns with a single name.
-    (e.g. `hopitalized_percent` and `confirmed_percent` can both be
-    renamed to `%`)
--   `augment_redundant()` is similar to `rename_redundant()`, but it
-    modifies the redundant column names (e.g. `hospitalized_n` and
-    `confirmed_n` can become `hospitalized (n)` and `confirmed (n)`)
--   `merge_ci()` combines estimate, lower bound, and upper bound columns
-    into a single column.
+- `rename_redundant()` renames redundant columns with a single name.
+  (e.g. `hopitalized_percent` and `confirmed_percent` can both be
+  renamed to `%`)
+- `augment_redundant()` is similar to `rename_redundant()`, but it
+  modifies the redundant column names (e.g. `hospitalized_n` and
+  `confirmed_n` can become `hospitalized (n)` and `confirmed (n)`)
+- `merge_ci()` combines estimate, lower bound, and upper bound columns
+  into a single column.
 
 ``` r
+
 df <- data.frame(
   `a n` = 1:6,
   `a prop` = round((1:6) / 6, 2),

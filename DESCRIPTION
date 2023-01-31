@@ -45,6 +45,7 @@ Suggests:
     testthat (>= 2.1.0),
     outbreaks,
     epidict,
+    epitabulate,
     covr,
     knitr,
     magrittr,
@@ -57,3 +58,4 @@ BugReports: https://github.com/R4EPI/epikit/issues
 VignetteBuilder: knitr
 Config/Needs/check: 
     R4EPI/epidict
+    R4EPI/epitabulate

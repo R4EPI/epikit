@@ -1,10 +1,7 @@
 #' Helper to format confidence interval for text
 #'
 #' This function is mainly used for placing in the text fields of Rmarkdown
-#' reports. You can use it by writing it in something like this:
-#' The CFR for Bamako is `` `r fmt_ci_df(case_fatality_rate(10, 50))` `` which
-#' will render like this:
-#' "The CFR for Bamako is `r fmt_ci_df(case_fatality_rate(10, 50))`"
+#' reports.
 #'
 #' @param x a data frame
 #' @param e the column of the estimate (defaults to the third column). Otherwise, a number
