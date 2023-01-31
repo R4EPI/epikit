@@ -43,7 +43,7 @@
 #'
 #' # define a fake population data set
 #' # including age group, sex, counts and proportions
-#' p <- sitrep::gen_population(total = 10000,
+#' p <- epikit::gen_population(total = 10000,
 #'   groups = c("0-10", "10-20", "20-30", "30-40", "40-50", "50-60"),
 #'   proportions = c(0.1, 0.2, 0.3, 0.4, 0.2, 0.1))
 #'
