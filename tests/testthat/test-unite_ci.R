@@ -8,11 +8,11 @@ test_that("Unite CI will unite the colums by name", {
   expect_length(united, 2)
   expect_named(united, c("variable", "slope (CI)"))
   expected <- c(
-    "0.74 (-0.77--2.26)", 
-    "0.00 (-0.00--0.01)", 
-    "0.01 (-0.00--0.01)", 
-    "1.00 (0.38--1.62)", 
-    "0.16 (-0.61--0.93)"
+    "0.74 (-0.77-2.26)",
+    "0.00 (-0.00-0.01)",
+    "0.01 (-0.00-0.01)",
+    "1.00 (0.38-1.62)",
+    "0.16 (-0.61-0.93)"
   )
   expect_identical(united[[2]], expected)
   expect_identical(united[[1]], df[[1]])

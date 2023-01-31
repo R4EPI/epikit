@@ -1,6 +1,6 @@
 #' Unite estimates and confidence intervals
-#' 
-#' create a character column by combining estimate, lower and upper columns. 
+#'
+#' create a character column by combining estimate, lower and upper columns.
 #' This is similar to [tidyr::unite()].
 #'
 #' @param x a data frame with at least three columns defining an estimate, lower
@@ -13,7 +13,9 @@
 #' @param m100 `TRUE` if the result should be multiplied by 100
 #' @param percent `TRUE` if the result should have a percent symbol added.
 #' @param ci `TRUE` if the result should include "CI" within the braces (defaults to FALSE)
-#' 
+#' @param separator what to separate lower and upper confidence intervals with,
+#'   default is "-"
+#'
 #' @return a modified data frame with merged columns or one additional column
 #'   representing the estimate and confidence interval
 #'
@@ -26,7 +28,7 @@
 #' print(df)
 #' unite_ci(df, "slope (CI)", estimate, lower, upper, m100 = FALSE, percent = FALSE)
 #'
-unite_ci <- function(x, col = NULL, ..., remove = TRUE, digits = 2, m100 = TRUE, percent = FALSE, ci = FALSE) {
+unite_ci <- function(x, col = NULL, ..., remove = TRUE, digits = 2, m100 = TRUE, percent = FALSE, ci = FALSE, separator = "-") {
 
   from_vars <- tidyselect::vars_select(colnames(x), ...)
   if (length(from_vars) != 3) {
@@ -45,9 +47,9 @@ unite_ci <- function(x, col = NULL, ..., remove = TRUE, digits = 2, m100 = TRUE,
   last_pos  <- which(names(x) %in% from_vars)[3]
 
   if (m100) {
-    new_col <- fmt_pci_df(x, e = from_vars[1], l = from_vars[2], u = from_vars[3], digits = digits, percent = percent)
+    new_col <- fmt_pci_df(x, e = from_vars[1], l = from_vars[2], u = from_vars[3], digits = digits, percent = percent, separator = separator)
   } else {
-    new_col <- fmt_ci_df(x, e = from_vars[1], l = from_vars[2], u = from_vars[3], digits = digits, percent = percent)
+    new_col <- fmt_ci_df(x, e = from_vars[1], l = from_vars[2], u = from_vars[3], digits = digits, percent = percent, separator = separator)
   }
   # remove the CI label if needed
   new_col <- if (ci) new_col else gsub("\\(CI ", "(", new_col)
@@ -60,17 +62,17 @@ unite_ci <- function(x, col = NULL, ..., remove = TRUE, digits = 2, m100 = TRUE,
 #' @export
 #' @inheritParams fmt_pci_df
 #' @rdname unite_ci
-merge_ci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2) {
-  cis <- fmt_ci_df(x, e, l, u, digits)
+merge_ci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2, separator = "-") {
+  cis <- fmt_ci_df(x, e, l, u, digits, separator = separator)
   x[c(l, u)] <- NULL
   x$ci <- gsub("^.+?\\(CI ", "(", cis)
   x
 }
 
 #' @export
-#' @rdname unite_ci 
-merge_pci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2) {
-  cis <- fmt_pci_df(x, e, l, u, digits)
+#' @rdname unite_ci
+merge_pci_df <- function(x, e = 3, l = e + 1, u = e + 2, digits = 2, separator = "-") {
+  cis <- fmt_pci_df(x, e, l, u, digits, separator = separator)
   x[c(l, u)] <- NULL
   x$ci <- gsub("^.+?\\(CI ", "(", cis)
   x

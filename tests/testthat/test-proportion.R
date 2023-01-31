@@ -16,15 +16,15 @@ test_that("Rates work with missing data", {
   expect_identical(pna5$upper     , c(NA, NA, p5$upper))
 
   merged <- attack_rate(c(5, NA, 5), c(NA, 10, 10), mergeCI = TRUE)
-  expect_identical(merged$ci, c("(NA--NA)", "(NA--NA)", "(23.66--76.34)"))
+  expect_identical(merged$ci, c("(NA-NA)", "(NA-NA)", "(23.66-76.34)"))
   merged2 <- case_fatality_rate(c(5, NA, 5), c(NA, 10, 10), mergeCI = TRUE)
-  expect_identical(merged2$ci, c("(NA--NA)", "(NA--NA)", "(23.66--76.34)"))
+  expect_identical(merged2$ci, c("(NA-NA)", "(NA-NA)", "(23.66-76.34)"))
 })
 
 test_that("mismatched data are rejected", {
 
   err <- "the length of the population vector (2) does not match the length of the cases/deaths vector (1)"
-  expect_error(attack_rate(5, c(10, 11)), err, fixed = TRUE) 
+  expect_error(attack_rate(5, c(10, 11)), err, fixed = TRUE)
 
 })
 
@@ -62,7 +62,7 @@ test_that("mortality rates work", {
 
   mr <- mortality_rate(accidentals, US_population, multiplier = 10^5, mergeCI = TRUE)
   expect_named(mr, c("deaths", "population", "mortality per 100 000", "ci"))
-  expect_equal(mr$ci, "(36.80--37.24)")
+  expect_equal(mr$ci, "(36.80-37.24)")
 })
 
 
@@ -70,7 +70,7 @@ test_that("case_fatality_rate_df is equivalent to the non-df version", {
 
   iris_res    <- case_fatality_rate_df(iris, Sepal.Width < 3)
   iris_expect <- case_fatality_rate(sum(iris$Sepal.Width < 3), population = nrow(iris))
-  
+
   expect_equal(iris_res, tibble::as_tibble(iris_expect))
   expect_equal(as.data.frame(iris_res), as.data.frame(iris_expect))
   expect_equal(iris_res$deaths, sum(iris$Sepal.Width < 3))
@@ -87,7 +87,7 @@ test_that("case_fatality_rate_df will do stratified analysis", {
   iris_n <- tibble::rownames_to_column(do.call('rbind', iris_n), "Species")
   iris_n <- tibble::as_tibble(iris_n)
   iris_n$Species <- forcats::fct_inorder(iris_n$Species)
- 
+
   expect_equal(iris_res, iris_n)
 
 })
@@ -97,12 +97,12 @@ test_that("case_fatality_rate_df will do stratified analysis with missing cases"
   miss_iris <- iris
   # setosa only has two samples with Sepal.Width < 3. If we set the max sepal
   # width value to missing, then there are only 49 samples to account for in
-  # this example. 
+  # this example.
   miss_iris$Sepal.Width[iris$Sepal.Width == max(iris$Sepal.Width)] <- NA
 
   iris_res <- case_fatality_rate_df(miss_iris, Sepal.Width < 3, group = Species)
-  iris_n <- with(miss_iris[!is.na(miss_iris$Sepal.Width), ], 
-    tapply(Sepal.Width < 3, Species, 
+  iris_n <- with(miss_iris[!is.na(miss_iris$Sepal.Width), ],
+    tapply(Sepal.Width < 3, Species,
       function(i) case_fatality_rate(sum(i), length(i))
     )
   )
@@ -110,10 +110,10 @@ test_that("case_fatality_rate_df will do stratified analysis with missing cases"
   iris_n <- tibble::rownames_to_column(do.call('rbind', iris_n), "Species")
   iris_n <- tibble::as_tibble(iris_n)
   iris_n$Species <- forcats::fct_inorder(iris_n$Species)
- 
+
   expect_equal(iris_res, iris_n)
-  
-  # Here, we are ensuring that this value is indeed greater than 4. 
+
+  # Here, we are ensuring that this value is indeed greater than 4.
   expect_gt(iris_res$cfr[1], 4)
 
 })
@@ -129,7 +129,7 @@ test_that("case_fatality_rate_df will do stratified analysis with missing", {
   iris_n <- tibble::as_tibble(iris_n)[c(2, 3, 1), ]
   iris_n$Species[3] <- "(Missing)"
   iris_n$Species <- forcats::fct_inorder(iris_n$Species)
- 
+
   expect_equal(iris_res, iris_n)
 
 })
@@ -139,12 +139,12 @@ test_that("case_fatality_rate_df will do stratified analysis with missing cases"
   miss_iris <- iris
   # setosa only has two samples with Sepal.Width < 3. If we set the max sepal
   # width value to missing, then there are only 49 samples to account for in
-  # this example. 
+  # this example.
   miss_iris$Sepal.Width[iris$Sepal.Width == max(iris$Sepal.Width)] <- NA
 
   iris_res <- case_fatality_rate_df(miss_iris, Sepal.Width < 3, group = Species)
-  iris_n <- with(miss_iris[!is.na(miss_iris$Sepal.Width), ], 
-    tapply(Sepal.Width < 3, Species, 
+  iris_n <- with(miss_iris[!is.na(miss_iris$Sepal.Width), ],
+    tapply(Sepal.Width < 3, Species,
       function(i) case_fatality_rate(sum(i), length(i))
     )
   )
@@ -152,10 +152,10 @@ test_that("case_fatality_rate_df will do stratified analysis with missing cases"
   iris_n <- tibble::rownames_to_column(do.call('rbind', iris_n), "Species")
   iris_n <- tibble::as_tibble(iris_n)
   iris_n$Species <- forcats::fct_inorder(iris_n$Species)
- 
+
   expect_equal(iris_res, iris_n)
-  
-  # Here, we are ensuring that this value is indeed greater than 4. 
+
+  # Here, we are ensuring that this value is indeed greater than 4.
   expect_gt(iris_res$cfr[1], 4)
 
 })
@@ -171,11 +171,11 @@ test_that("case_fatality_rate_df will add a total row to stratified analysis", {
   iris_n <- tibble::as_tibble(iris_n)[c(2, 3, 1), ]
   iris_n$Species[3] <- "(Missing)"
   iris_n <- rbind(
-    iris_n, 
+    iris_n,
     cbind(Species = "Total", case_fatality_rate_df(iris, Sepal.Width < 3))
   )
   iris_n$Species <- forcats::fct_inorder(iris_n$Species)
- 
+
   expect_equal(iris_res, iris_n)
 
 })
@@ -191,12 +191,12 @@ test_that("case_fatality_rate_df will add a total row to stratified analysis and
   iris_n <- tibble::as_tibble(iris_n)[c(2, 3, 1), ]
   iris_n$Species[3] <- "(Missing)"
   iris_n <- rbind(
-    iris_n, 
+    iris_n,
     cbind(Species = "Total", case_fatality_rate_df(iris, Sepal.Width < 3))
   )
   iris_n$Species <- forcats::fct_inorder(iris_n$Species)
   iris_n <- merge_ci_df(iris_n, e = 4)
- 
+
   expect_equal(iris_res, iris_n)
 
 })
