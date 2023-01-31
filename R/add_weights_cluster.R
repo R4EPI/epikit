@@ -230,7 +230,12 @@ add_weights_cluster <- function(x, cl,
 
   ## chance of an individual being selected in their household
   # create a subset - so we dont merge too many vars in later
-  temp <- dplyr::select(x, clus_id_x, hh_id_x, indiv_eli, indiv_surv)
+  temp <- dplyr::select(x, 
+    tidyselect::all_of(clus_id_x), 
+    tidyselect::all_of(hh_id_x),
+    tidyselect::all_of(indiv_eli), 
+    tidyselect::all_of(indiv_surv)
+  )
 
   # inverse chance of individual being chosen in their household
   temp[["indiv_chance"]] <- temp[[indiv_eli]] / temp[[indiv_surv]]
@@ -242,7 +247,9 @@ add_weights_cluster <- function(x, cl,
   temp[[surv_weight]] <- temp$indiv_chance * temp$clus_hh_chance
 
   # create a survey weight id by merging cluster and household id
-  temp <- tidyr::unite(temp, {{surv_weight_ID}}, clus_id_x, hh_id_x)
+  temp[[surv_weight_ID]] <- paste0(temp[[clus_id_x]], "_", temp[[hh_id_x]])
+  temp[[clus_id_x]] <- NULL
+  temp[[hh_id_x]] <- NULL
 
   # only keep the weight and the weight id
   temp <- dplyr::select(temp, {{surv_weight}}, {{surv_weight_ID}})

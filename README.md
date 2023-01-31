@@ -10,8 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 status](https://www.r-pkg.org/badges/version/epikit)](https://CRAN.R-project.org/package=epikit)
 [![Codecov test
 coverage](https://codecov.io/gh/R4EPI/epikit/branch/master/graph/badge.svg)](https://codecov.io/gh/R4EPI/epikit?branch=master)
-[![R build
-status](https://github.com/R4EPI/epikit/workflows/R-CMD-check/badge.svg)](https://github.com/R4EPI/epikit/actions)
+[![R-CMD-check](https://github.com/R4EPI/epikit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/R4EPI/epikit/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of {epikit} is to provide miscellaneous functions for applied
@@ -266,7 +265,6 @@ gen_population(groups = c("0-4","5-14","15-29","30-44","45+"),
 Type in counts directly to get the groups in a data frame.
 
 ``` r
-
 # get population counts based on counts, stratified - type out counts
 # for each group and strata
 gen_population(groups = c("0-4","5-14","15-29","30-44","45+"), 
@@ -302,7 +300,6 @@ report and work best with the `knitr::kable()` function.
     into a single column.
 
 ``` r
-
 df <- data.frame(
   `a n` = 1:6,
   `a prop` = round((1:6) / 6, 2),
