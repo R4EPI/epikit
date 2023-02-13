@@ -1,7 +1,17 @@
+# epikit 0.1.5 
+
+* removed tidyr::unite() in favour of paste-ing two columns together
+* added `separator` argument to `_ci()` functions which now defaults to `-`
+  (@aspina7, #31)
+
 # epikit 0.1.4 
+
 * unecessary bump because {pkgdown}
 
 # epikit 0.1.3
+
+(non-cran release)
+
 * migrated functions and tests from {sitrep} including: `add_weights_cluster()`, 
   `add_weights_strata()`, `find_date_cause()`, `find_end_date()`, 
   `find_start_date()`, `gen_polygon()`, `gen_population()` and `zcurve()` (@aspina7, #22)
