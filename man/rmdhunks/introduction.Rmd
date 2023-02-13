@@ -1,5 +1,5 @@
 The goal of {epikit} is to provide miscellaneous functions for applied epidemiologists. 
-This is a product of the R4EPIs project; learn more at <https://r4epis.netlify.com>.
+This is a product of the R4EPIs project; learn more at <https://r4epis.netlify.app/>.
 
 ## Installation
 
