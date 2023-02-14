@@ -5,17 +5,17 @@ epikit
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/epikit)](https://CRAN.R-project.org/package=epikit)
 [![Codecov test
-coverage](https://codecov.io/gh/R4EPI/epikit/branch/master/graph/badge.svg)](https://codecov.io/gh/R4EPI/epikit?branch=master)
+coverage](https://app.codecov.io/gh/R4EPI/epikit/branch/master/graph/badge.svg)](https://app.codecov.io/gh/R4EPI/epikit?branch=master)
 [![R-CMD-check](https://github.com/R4EPI/epikit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/R4EPI/epikit/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of {epikit} is to provide miscellaneous functions for applied
 epidemiologists. This is a product of the R4EPIs project; learn more at
-<https://r4epis.netlify.com>.
+<https://r4epis.netlify.app/>.
 
 ## Installation
 
@@ -137,12 +137,19 @@ case_fatality_rate_df(ebola_sim_clean$linelist,
   add_total = TRUE,
   mergeCI = TRUE
 )
+#> Warning: There was 1 warning in `dplyr::mutate()`.
+#> ℹ In argument: `gender = forcats::fct_explicit_na(gender, "(Missing)")`.
+#> Caused by warning:
+#> ! `fct_explicit_na()` was deprecated in forcats 1.0.0.
+#> ℹ Please use `fct_na_value_to_level()` instead.
+#> ℹ The deprecated feature was likely used in the epikit package.
+#>   Please report the issue at <https://github.com/R4EPI/epikit/issues>.
 #> # A tibble: 3 × 5
-#>   gender deaths population   cfr ci            
-#>   <fct>   <int>      <int> <dbl> <chr>         
-#> 1 f        1291       2280  56.6 (54.58--58.64)
-#> 2 m        1273       2247  56.7 (54.59--58.69)
-#> 3 Total    2564       4527  56.6 (55.19--58.08)
+#>   gender deaths population   cfr ci           
+#>   <fct>   <int>      <int> <dbl> <chr>        
+#> 1 f        1291       2280  56.6 (54.58-58.64)
+#> 2 m        1273       2247  56.7 (54.59-58.69)
+#> 3 Total    2564       4527  56.6 (55.19-58.08)
 ```
 
 ## Inline functions
@@ -151,14 +158,14 @@ The inline functions make it easier to print estimates with confidence
 intervals in reports with the correct number of digits.
 
 -   `fmt_ci()` formats confidence intervals from three numbers.
-    (e.g. `fmt_ci(50, 10, 80)` produces 50.00% (CI 10.00–80.00)
+    (e.g. `fmt_ci(50, 10, 80)` produces 50.00% (CI 10.00-80.00)
 -   `fmt_pci()` formats confidence intervals from three fractions,
     multiplying by 100 beforehand.
 
 The `_df` suffixes (`fmt_ci_df()`, `fmt_pci_df()`) will print the
 confidence intervals for data stored in data frames. These are designed
 to work with the outputs of the rates functions. For example,
-`fmt_ci_df(attack_rate(10, 50))` will produce 20.00% (CI 11.24–33.04).
+`fmt_ci_df(attack_rate(10, 50))` will produce 20.00% (CI 11.24-33.04).
 All of these suffixes will have three options `e`, `l`, and `u`. These
 refer to `estimate`, `lower`, and `upper` column positions or names.
 
@@ -198,21 +205,21 @@ print(df)
 
 # unite CI has more options
 unite_ci(df, "slope (CI)", estimate, lower, upper, m100 = FALSE, percent = FALSE)
-#>      variable         slope (CI)
-#> 1 (Intercept) 0.74 (-0.77--2.26)
-#> 2        disp 0.00 (-0.00--0.01)
-#> 3          hp 0.01 (-0.00--0.01)
-#> 4          wt  1.00 (0.38--1.62)
-#> 5          am 0.16 (-0.61--0.93)
+#>      variable        slope (CI)
+#> 1 (Intercept) 0.74 (-0.77-2.26)
+#> 2        disp 0.00 (-0.00-0.01)
+#> 3          hp 0.01 (-0.00-0.01)
+#> 4          wt  1.00 (0.38-1.62)
+#> 5          am 0.16 (-0.61-0.93)
 
 # merge_ci just needs to know where the estimate is
 merge_ci_df(df, e = 2)
-#>      variable    estimate            ci
-#> 1 (Intercept) 0.740647656 (-0.77--2.26)
-#> 2        disp 0.002702925 (-0.00--0.01)
-#> 3          hp 0.005274547 (-0.00--0.01)
-#> 4          wt 1.001303136  (0.38--1.62)
-#> 5          am 0.155814790 (-0.61--0.93)
+#>      variable    estimate           ci
+#> 1 (Intercept) 0.740647656 (-0.77-2.26)
+#> 2        disp 0.002702925 (-0.00-0.01)
+#> 3          hp 0.005274547 (-0.00-0.01)
+#> 4          wt 1.001303136  (0.38-1.62)
+#> 5          am 0.155814790 (-0.61-0.93)
 ```
 
 ## Give me a break
