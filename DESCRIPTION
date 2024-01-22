@@ -1,6 +1,6 @@
 Package: epikit
 Title: Miscellaneous Helper Tools for Epidemiologists
-Version: 0.1.5
+Version: 0.1.6
 Authors@R: 
     c(person(given = "Alexander",
              family = "Spina",
