@@ -1,3 +1,7 @@
+# epikit 0.1.6 
+
+* internal documentation fix. No user-visible changes.
+
 # epikit 0.1.5 
 
 * removed tidyr::unite() in favour of paste-ing two columns together

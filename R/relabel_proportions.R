@@ -58,9 +58,8 @@ augment_redundant <- function(x, ...) {
 #' calls for the express purpose of renaming functions. This function is
 #' intended for internal use to be passed to other MSF packages.
 #'
-#' @param call a language object reflecting the current call.
-#' @param ... passed from the calling function
-#'
+#' @param parent the level of the parent function. Defaults to 1, which
+#'   selects the dots from the immediate parent.
 #'
 #' @return a list of character vectors
 #' @export
