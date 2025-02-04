@@ -22,7 +22,7 @@ population by surveyed counts in the sample population."><!-- mathjax --><script
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epikit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
       </span>
     </div>
 
@@ -136,7 +136,7 @@ to match the weights to the correct subset of the population.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># define a fake population data set</span></span></span>
 <span class="r-in"><span><span class="co"># including age group, sex, counts and proportions</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">sitrep</span><span class="fu">::</span><span class="fu"><a href="https://r4epi.github.io/epikit/reference/gen_population.html">gen_population</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fl">10000</span>,</span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">epikit</span><span class="fu">::</span><span class="fu"><a href="gen_population.html">gen_population</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fl">10000</span>,</span></span>
 <span class="r-in"><span>  groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0-10"</span>, <span class="st">"10-20"</span>, <span class="st">"20-30"</span>, <span class="st">"30-40"</span>, <span class="st">"40-50"</span>, <span class="st">"50-60"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  proportions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Given proportions (or counts) is not the same as</span>

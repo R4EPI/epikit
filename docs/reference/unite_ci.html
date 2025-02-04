@@ -18,7 +18,7 @@ This is similar to tidyr::unite()."><!-- mathjax --><script src="https://cdnjs.c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epikit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
       </span>
     </div>
 
@@ -73,12 +73,13 @@ This is similar to <code><a href="https://tidyr.tidyverse.org/reference/unite.ht
 <span>  digits <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  m100 <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  percent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  ci <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  separator <span class="op">=</span> <span class="st">"-"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">merge_ci_df</span><span class="op">(</span><span class="va">x</span>, e <span class="op">=</span> <span class="fl">3</span>, l <span class="op">=</span> <span class="va">e</span> <span class="op">+</span> <span class="fl">1</span>, u <span class="op">=</span> <span class="va">e</span> <span class="op">+</span> <span class="fl">2</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu">merge_ci_df</span><span class="op">(</span><span class="va">x</span>, e <span class="op">=</span> <span class="fl">3</span>, l <span class="op">=</span> <span class="va">e</span> <span class="op">+</span> <span class="fl">1</span>, u <span class="op">=</span> <span class="va">e</span> <span class="op">+</span> <span class="fl">2</span>, digits <span class="op">=</span> <span class="fl">2</span>, separator <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">merge_pci_df</span><span class="op">(</span><span class="va">x</span>, e <span class="op">=</span> <span class="fl">3</span>, l <span class="op">=</span> <span class="va">e</span> <span class="op">+</span> <span class="fl">1</span>, u <span class="op">=</span> <span class="va">e</span> <span class="op">+</span> <span class="fl">2</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">merge_pci_df</span><span class="op">(</span><span class="va">x</span>, e <span class="op">=</span> <span class="fl">3</span>, l <span class="op">=</span> <span class="va">e</span> <span class="op">+</span> <span class="fl">1</span>, u <span class="op">=</span> <span class="va">e</span> <span class="op">+</span> <span class="fl">2</span>, digits <span class="op">=</span> <span class="fl">2</span>, separator <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -117,6 +118,11 @@ Upper.</p></dd>
 <dd><p><code>TRUE</code> if the result should include "CI" within the braces (defaults to FALSE)</p></dd>
 
 
+<dt>separator</dt>
+<dd><p>what to separate lower and upper confidence intervals with,
+default is "-"</p></dd>
+
+
 <dt>e</dt>
 <dd><p>the column of the estimate (defaults to the third column). Otherwise, a number</p></dd>
 
@@ -151,12 +157,12 @@ representing the estimate and confidence interval</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4          wt 1.001303136  0.380088737 1.622517536</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5          am 0.155814790 -0.614677730 0.926307310</span>
 <span class="r-in"><span><span class="fu">unite_ci</span><span class="op">(</span><span class="va">df</span>, <span class="st">"slope (CI)"</span>, <span class="va">estimate</span>, <span class="va">lower</span>, <span class="va">upper</span>, m100 <span class="op">=</span> <span class="cn">FALSE</span>, percent <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      variable         slope (CI)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 (Intercept) 0.74 (-0.77--2.26)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        disp 0.00 (-0.00--0.01)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          hp 0.01 (-0.00--0.01)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          wt  1.00 (0.38--1.62)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          am 0.16 (-0.61--0.93)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      variable        slope (CI)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 (Intercept) 0.74 (-0.77-2.26)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        disp 0.00 (-0.00-0.01)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          hp 0.01 (-0.00-0.01)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          wt  1.00 (0.38-1.62)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          am 0.16 (-0.61-0.93)</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

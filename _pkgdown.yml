@@ -4,9 +4,6 @@ reference:
 - title: Format age categories
   desc: ~
   contents: '`age_categories`'
-- title: Calculate proportions
-  desc: Use these functions to calculate tables of proportions using `binom::binom.wilson()`
-  contents: '`attack_rate`'
 - title: Format proportions and confidence intervals inline
   desc: Use these functions to produce inline text in Rmarkdown documents
   contents:

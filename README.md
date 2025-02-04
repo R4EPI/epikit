@@ -62,14 +62,15 @@ in {epikit} come in a few categories:
 A couple of functions are dedicated to constructing age categories and
 partitioning them into separate chunks.
 
--   `age_categories()` takes in a vector of numbers and returns
-    formatted age categories.
--   `group_age_categories()` will take a data frame with different age
-    categories in columns (e.g. years, months, weeks) and combine them
-    into a single column, selecting the column with the lowest priority.
+- `age_categories()` takes in a vector of numbers and returns formatted
+  age categories.
+- `group_age_categories()` will take a data frame with different age
+  categories in columns (e.g. years, months, weeks) and combine them
+  into a single column, selecting the column with the lowest priority.
 
 ``` r
 library("knitr")
+#> Warning: Paket 'knitr' wurde unter R Version 4.2.2 erstellt
 library("magrittr")
 
 set.seed(1)
@@ -157,6 +158,7 @@ case_fatality_rate_df(ebola_sim_clean$linelist,
 The inline functions make it easier to print estimates with confidence
 intervals in reports with the correct number of digits.
 
+
 -   `fmt_ci()` formats confidence intervals from three numbers.
     (e.g. `fmt_ci(50, 10, 80)` produces 50.00% (CI 10.00-80.00)
 -   `fmt_pci()` formats confidence intervals from three fractions,
@@ -182,12 +184,12 @@ The confidence interval manipulation functions take in a data frame and
 combine their confidence intervals into a single character string much
 like the inline functions do. There are two flavors:
 
--   `merge_ci_df()` and `merge_pci_df()` will merge just the values of
-    the confidence interval and leave the estimate alone. Note: this
-    WILL remove the lower and upper columns.
--   `unite_ci()` merges both the confidence interval and the estimate
-    into a single character column. This generally has more options than
-    `merge_ci()`
+- `merge_ci_df()` and `merge_pci_df()` will merge just the values of the
+  confidence interval and leave the estimate alone. Note: this WILL
+  remove the lower and upper columns.
+- `unite_ci()` merges both the confidence interval and the estimate into
+  a single character column. This generally has more options than
+  `merge_ci()`
 
 This is useful for reporting models:
 
@@ -272,6 +274,7 @@ gen_population(groups = c("0-4","5-14","15-29","30-44","45+"),
 Type in counts directly to get the groups in a data frame.
 
 ``` r
+
 # get population counts based on counts, stratified - type out counts
 # for each group and strata
 gen_population(groups = c("0-4","5-14","15-29","30-44","45+"), 
@@ -297,16 +300,17 @@ gen_population(groups = c("0-4","5-14","15-29","30-44","45+"),
 These functions all modify the appearance of a table displayed in a
 report and work best with the `knitr::kable()` function.
 
--   `rename_redundant()` renames redundant columns with a single name.
-    (e.g. `hopitalized_percent` and `confirmed_percent` can both be
-    renamed to `%`)
--   `augment_redundant()` is similar to `rename_redundant()`, but it
-    modifies the redundant column names (e.g. `hospitalized_n` and
-    `confirmed_n` can become `hospitalized (n)` and `confirmed (n)`)
--   `merge_ci()` combines estimate, lower bound, and upper bound columns
-    into a single column.
+- `rename_redundant()` renames redundant columns with a single name.
+  (e.g. `hopitalized_percent` and `confirmed_percent` can both be
+  renamed to `%`)
+- `augment_redundant()` is similar to `rename_redundant()`, but it
+  modifies the redundant column names (e.g. `hospitalized_n` and
+  `confirmed_n` can become `hospitalized (n)` and `confirmed (n)`)
+- `merge_ci()` combines estimate, lower bound, and upper bound columns
+  into a single column.
 
 ``` r
+
 df <- data.frame(
   `a n` = 1:6,
   `a prop` = round((1:6) / 6, 2),
