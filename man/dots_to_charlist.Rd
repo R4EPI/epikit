@@ -7,9 +7,8 @@
 dots_to_charlist(parent = 1L)
 }
 \arguments{
-\item{call}{a language object reflecting the current call.}
-
-\item{...}{passed from the calling function}
+\item{parent}{the level of the parent function. Defaults to 1, which
+selects the dots from the immediate parent.}
 }
 \value{
 a list of character vectors

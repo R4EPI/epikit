@@ -1,15 +1,15 @@
 Package: epikit
-Title: Miscellaneous helper tools for epidemiologists
-Version: 0.1.4
+Title: Miscellaneous Helper Tools for Epidemiologists
+Version: 0.1.6
 Authors@R: 
     c(person(given = "Alexander",
              family = "Spina",
              email = "aspina@appliedepi.org", 
              comment = c(ORCID = "0000-0001-8425-1867"),
-             role = c("aut", "cre")),
+             role = c("aut")),
       person(given = "Zhian N.",
              family = "Kamvar",
-             role = "aut",
+             role = c("aut", "cre"),
              email = "zkamvar@gmail.com",
              comment = c(ORCID = "0000-0003-1458-7108")),
       person(given = "Dirk",
@@ -23,7 +23,7 @@ Description: Contains tools for formatting inline code, renaming redundant
   columns, aggregating age categories, adding survey weights, finding the earliest
   date of an event, plotting z-curves, generating population counts and 
   calculating proportions with confidence intervals. This is part of the 
-  'R4Epis' project <https://r4epis.netlify.com>.
+  'R4Epis' project <https://r4epis.netlify.app/>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -52,7 +52,7 @@ Suggests:
     rmarkdown
 Additional_repositories: https://r4epi.github.io/drat
 URL: https://github.com/R4EPI/epikit,
-    https://r4epis.netlify.com,
+    https://r4epis.netlify.app,
     https://r4epi.github.io/epikit/
 BugReports: https://github.com/R4EPI/epikit/issues
 VignetteBuilder: knitr

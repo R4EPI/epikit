@@ -5,6 +5,7 @@
 # roxygen namespace tags. Modify with care!
 ## usethis namespace: start
 #' @importFrom rlang .data :=
+#' @importFrom stats setNames
 #' @importFrom ggplot2 ggplot
 #' @importFrom ggplot2 aes 
 #' @importFrom ggplot2 stat_density
