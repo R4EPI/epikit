@@ -57,5 +57,5 @@ URL: https://github.com/R4EPI/epikit,
 BugReports: https://github.com/R4EPI/epikit/issues
 VignetteBuilder: knitr
 Config/Needs/check: 
-    R4EPI/epidict
+    R4EPI/epidict,
     R4EPI/epitabulate
