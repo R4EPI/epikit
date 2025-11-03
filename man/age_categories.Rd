@@ -78,10 +78,13 @@ Create an age group variable
 \examples{
 
 
-if (interactive() && require("dplyr") && require("epidict")) {
+if (interactive() && require("dplyr")) {
 withAutoprint({
 set.seed(50)
-dat <- epidict::gen_data("Cholera", n = 100, org = "MSF")
+years <- sample(0:90, 100, replace = TRUE)
+months <- ifelse(years < 2, sample(0:23, 100, replace = TRUE), NA)
+days <- ifelse(years < 2 & months < 2, sample(0:30, 100, replace = TRUE), NA)
+dat <- data.frame(age_years = years, age_months = months, age_days = days)
 ages <- dat \%>\%
   select(starts_with("age")) \%>\%
   mutate(age_years = age_categories(age_years, breakers = c(0, 5, 10, 15, 20))) \%>\%
