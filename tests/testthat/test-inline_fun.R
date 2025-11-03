@@ -1,8 +1,19 @@
-
-cfr <- epitabulate::case_fatality_rate(10, 50)
+cfr <- data.frame(
+  deaths = 10,
+  population = 50,
+  cfr = 20,
+  lower = 11.24375,
+  upper = 33.03711
+)
 cfr_expected <- "20.00% (CI 11.24-33.04)"
 cfr_merged <- gsub("^[0-9.% (CI]{11}", "(", cfr_expected)
-pro <- epitabulate::attack_rate(5, 50)
+pro <- data.frame(
+  cases = 5,
+  population = 50,
+  ar = 10,
+  lower = 4.347576,
+  upper = 21.36023
+)
 pro_expected <- "10.00% (CI 4.35-21.36)"
 pro_merged <- gsub("^[0-9.% (CI]{11}", "(", pro_expected)
 
