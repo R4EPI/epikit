@@ -44,7 +44,7 @@ assert_positive_timespan(x, date_start, date_end)
 \item{x}{a data frame}
 
 \item{...}{an ordered series of date columns (i.e. the most important date
-to be considered first).}
+to be considered first). Earlier columns take precedence in case of ties.}
 
 \item{period_start, period_end}{for the find_ functions, this should be the
 name of a column in \code{x} that contains the start/end of the recall period.
@@ -55,8 +55,9 @@ For \code{constrain_dates}, this should be a vector of dates.}
 \item{datereason}{the name of the column to contain the name of the column
 from which the date came.}
 
-\item{na_fill}{one of either "before" or "after" indicating that the new
-column should only contain dates before or after the cutoff date.}
+\item{na_fill}{one of "start", "end", or NULL. If "start" or "end", NA values
+in the result will be replaced with the corresponding period boundary.
+If NULL, NAs are left as-is.}
 
 \item{i}{a vector of dates}
 
@@ -66,8 +67,9 @@ boundary will be set to NA.}
 \item{date_start, date_end}{column name of a date vector}
 }
 \description{
-This function will find the first date in an orderd series of columns that
-is either before or after a cutoff date, inclusive.
+This function will find the first date in an ordered series of columns that
+falls within a specified period. If no dates from the provided columns fall
+within the period, it returns the period boundary (start or end) as a fallback.
 }
 \examples{
 d <- data.frame(
@@ -79,7 +81,7 @@ d <- data.frame(
 )
 print(dd <- find_date_cause(d, s1, s2, s3, period_start = ps, period_end = pe))
 print(bb <- find_date_cause(d, s1, s2, s3, period_start = ps, period_end = pe,
-                            na_fill = "end", 
+                            na_fill = "end",
                             datecol = "enddate",
                             datereason = "endcause"))
 find_date_cause(d, s3, s2, s1, period_start = ps, period_end = pe)
