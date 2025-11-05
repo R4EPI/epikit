@@ -9,9 +9,9 @@ epikit
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/epikit)](https://CRAN.R-project.org/package=epikit)
-[![Codecov test
-coverage](https://app.codecov.io/gh/R4EPI/epikit/branch/master/graph/badge.svg)](https://app.codecov.io/gh/R4EPI/epikit?branch=master)
 [![R-CMD-check](https://github.com/R4EPI/epikit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/R4EPI/epikit/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/R4EPI/epikit/graph/badge.svg)](https://app.codecov.io/gh/R4EPI/epikit)
 <!-- badges: end -->
 
 The goal of {epikit} is to provide miscellaneous functions for applied
