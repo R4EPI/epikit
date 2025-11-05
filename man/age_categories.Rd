@@ -12,6 +12,8 @@ age_categories(
   upper = NULL,
   by = 10,
   separator = "-",
+  floor = FALSE,
+  below.char = "<",
   ceiling = FALSE,
   above.char = "+"
 )
@@ -41,6 +43,15 @@ sequence.}
 
 \item{separator}{A character that you want to have between ages in group
 names. The default is "-" producing e.g. 0-10.}
+
+\item{floor}{A TRUE/FALSE variable. Specify whether you would like the
+lowest value in your breakers, or alternatively the lower value specified,
+to be formatted with below.char instead of as a range. This would produce
+the lowest group of "<1" rather than "0-0". The default is TRUE.}
+
+\item{below.char}{Only considered when floor == TRUE. A character that
+you want to have before your lowest age group. The default is "<" producing
+e.g. <1}
 
 \item{ceiling}{A TRUE/FALSE variable. Specify whether you would like the
 highest value in your breakers, or alternatively the upper value specified,
