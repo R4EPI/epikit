@@ -1,3 +1,12 @@
+# epikit 0.2.0
+
+* proportion functions moved to epitabulate package 
+* improved behaviour of `find_date_cause()`, `find_end_date()`, 
+  `find_start_date()` on filling dates outside the period and appropriately warning
+* allowed for a floor argument in `age_categories()` to label the lowest group 
+  of "<1" rather than "0-0"
+* improved documentation and reduced dependencies 
+
 # epikit 0.1.6 
 
 * internal documentation fix. No user-visible changes.
