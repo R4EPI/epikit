@@ -1,5 +1,5 @@
 The goal of {epikit} is to provide miscellaneous functions for applied epidemiologists. 
-This is a product of the R4EPIs project; learn more at <https://r4epis.netlify.app/>.
+This is a product of the R4EPIs project; learn more at <https://r4epi.github.io/sitrep/>.
 
 ## Installation
 
@@ -15,9 +15,6 @@ NOTE: everything inside the details tag will be collapsed and effectively
 hidden from the user
  -->
 <summary style='text-decoration: underline'>Click here for alternative installation options</summary>
-If there is a bugfix or feature that is not yet on CRAN, you can install it via
-the {drat} package:
-
 You can also install the in-development version from GitHub using the {remotes}
 package (but there's no guarantee that it will be stable):
 
@@ -70,18 +67,43 @@ in reports with the correct number of digits.
  - `fmt_ci()` formats confidence intervals from three numbers. (e.g. `fmt_ci(50, 10, 80)` produces `r fmt_ci(50, 10, 80)`
  - `fmt_pci()` formats confidence intervals from three fractions, multiplying by 100 beforehand.
 
-<!-- 
+
 The `_df` suffixes (`fmt_ci_df()`, `fmt_pci_df()`) will print the confidence 
 intervals for data stored in data frames. These are designed to work with the
-outputs of the rates functions. For example, `fmt_ci_df(attack_rate(10, 50))`
-will produce `r #fmt_ci_df(attack_rate(10, 50))`. All of these suffixes will have
-three options `e`, `l`, and `u`. These refer to `estimate`, `lower`, and `upper`
-column positions or names.
+outputs of the rates functions. Such as the below dataframe output. 
 
- - `fmt_count()` will count a condition in a data frame and present the number
-   and percent of `TRUE` values. For example, if you wanted to count the number
-    of women patients from Rokupa hospital, you would write: `fmt_count(ebola_sim_clean$linelist, gender == "f", hospital == "Rokupa Hospital")` and it would produce: `r #fmt_count(ebola_sim_clean$linelist, gender == "f", hospital == "Rokupa Hospital")` 
- -->
+```{r rate_data}
+# Create fake dataframe 
+dat <- data.frame(
+  deaths = 10,
+  population = 50,
+  cfr = 20,
+  lower = 11.24375,
+  upper = 33.03711
+)
+
+```
+
+- For example, `fmt_ci_df(dat)` will produce `r fmt_ci_df(dat)`. All of these suffixes 
+  will have three options `e`, `l`, and `u`. These refer to `estimate`, `lower`, 
+  and `upper` column positions or names.
+
+- `fmt_count()` will count a condition in a data frame and present the number 
+  and percent of `TRUE` values. For example, if you wanted to count the number 
+  of women patients from hospital from the below fake dataset. 
+```{r counts}
+
+## create fake dataset
+dat <- data.frame(
+  gender = sample(c("f", "m"), 100, replace = TRUE), 
+  location = sample(c("hospital", "clinic", "community"), 100, replace = TRUE)
+)
+
+```
+    
+You would write:`fmt_count(dat, gender == "f", location == "hospital")` and it 
+would produce: `r fmt_count(dat, gender == "f", location == "hospital")` 
+ 
 
 
 ## Confidence interval manipulation

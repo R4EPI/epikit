@@ -15,6 +15,15 @@
 #' @param separator A character that you want to have between ages in group
 #' names. The default is "-" producing e.g. 0-10.
 #'
+#' @param floor A TRUE/FALSE variable. Specify whether you would like the
+#' lowest value in your breakers, or alternatively the lower value specified,
+#' to be formatted with below.char instead of as a range. This would produce
+#' the lowest group of "<1" rather than "0-0". The default is TRUE.
+#'
+#' @param below.char Only considered when floor == TRUE. A character that
+#' you want to have before your lowest age group. The default is "<" producing
+#' e.g. <1
+#'
 #' @param ceiling A TRUE/FALSE variable. Specify whether you would like the
 #' highest value in your breakers, or alternatively the upper value specified,
 #' to be the endpoint. This would produce the highest group of "70-80" rather
@@ -30,10 +39,13 @@
 #' @examples
 #'
 #'
-#' if (interactive() && require("dplyr") && require("epidict")) {
+#' if (interactive() && require("dplyr")) {
 #' withAutoprint({
 #' set.seed(50)
-#' dat <- epidict::gen_data("Cholera", n = 100, org = "MSF")
+#' years <- sample(0:90, 100, replace = TRUE)
+#' months <- ifelse(years < 2, sample(0:23, 100, replace = TRUE), NA)
+#' days <- ifelse(years < 2 & months < 2, sample(0:30, 100, replace = TRUE), NA)
+#' dat <- data.frame(age_years = years, age_months = months, age_days = days)
 #' ages <- dat %>%
 #'   select(starts_with("age")) %>%
 #'   mutate(age_years = age_categories(age_years, breakers = c(0, 5, 10, 15, 20))) %>%
@@ -47,7 +59,8 @@
 #' })
 #' }
 age_categories <- function(x, breakers = NULL, lower = 0, upper = NULL, by = 10,
-                           separator = "-", ceiling = FALSE, above.char = "+") {
+                           separator = "-", floor = FALSE, below.char = "<",
+                           ceiling = FALSE, above.char = "+") {
 
 
   # make sure age variable is numeric
@@ -76,18 +89,38 @@ age_categories <- function(x, breakers = NULL, lower = 0, upper = NULL, by = 10,
 
   nb <- length(breakers)
 
-  if (ceiling) {
+  if (floor && ceiling) {
+    first_lab  <- sprintf("%s%d", below.char, breakers[2])
+    lower_vals <- breakers[2:(nb-2)]
+    upper_vals <- breakers[3:(nb-1)] - 1
+    final_lab  <- sprintf("%d%s%d", breakers[nb - 1], separator, breakers[nb])
+    labs <- c(first_lab, paste(lower_vals, upper_vals, sep = separator), final_lab)
+    # append extra break at the end and use -Inf at the start for the "<" group
+    breakers <- c(-Inf, breakers[2:(nb-1)], breakers[nb] + 1L)
+
+  } else if (floor && !ceiling) {
+    first_lab  <- sprintf("%s%d", below.char, breakers[2])
+    lower_vals <- breakers[2:(nb - 1)]
+    upper_vals <- breakers[3:nb] - 1
+    final_lab  <- sprintf("%d%s", breakers[nb], above.char)
+    labs <- c(first_lab, paste(lower_vals, upper_vals, sep = separator), final_lab)
+    breakers <- c(-Inf, breakers[-1], Inf)
+
+  } else if (!floor && ceiling) {
     lower_vals <- breakers[c(-nb, -nb + 1)]
     upper_vals <- breakers[c(-1, -nb)] - 1
-    final_val  <- sprintf("%d%s%d", breakers[nb - 1], separator, breakers[nb])
-    breakers[nb] <- breakers[nb] + 1L
-  } else {
+    final_lab  <- sprintf("%d%s%d", breakers[nb - 1], separator, breakers[nb])
+    labs <- c(paste(lower_vals, upper_vals, sep = separator), final_lab)
+    # append an extra break (original last + 1) to create the last interval
+    breakers <- c(breakers[-nb], breakers[nb] + 1L)
+
+  } else { # !floor && !ceiling
     lower_vals <- breakers[-nb]
     upper_vals <- breakers[-1] - 1
-    final_val  <- sprintf("%d%s", breakers[nb], above.char)
-    breakers   <- unique(c(breakers, Inf))
+    final_lab  <- sprintf("%d%s", breakers[nb], above.char)
+    labs <- c(paste(lower_vals, upper_vals, sep = separator), final_lab)
+    breakers <- c(breakers, Inf)
   }
-  labs <- c(paste(lower_vals, upper_vals, sep = separator), final_val)
 
   output <- cut(
     x,

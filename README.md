@@ -2,20 +2,21 @@ epikit
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/epikit)](https://CRAN.R-project.org/package=epikit)
-[![Codecov test
-coverage](https://app.codecov.io/gh/R4EPI/epikit/branch/master/graph/badge.svg)](https://app.codecov.io/gh/R4EPI/epikit?branch=master)
 [![R-CMD-check](https://github.com/R4EPI/epikit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/R4EPI/epikit/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/R4EPI/epikit/graph/badge.svg)](https://app.codecov.io/gh/R4EPI/epikit)
 <!-- badges: end -->
 
 The goal of {epikit} is to provide miscellaneous functions for applied
 epidemiologists. This is a product of the R4EPIs project; learn more at
-<https://r4epis.netlify.app/>.
+<https://r4epi.github.io/sitrep/>.
 
 ## Installation
 
@@ -26,16 +27,16 @@ install.packages("epikit")
 ```
 
 <details>
+
 <!--
 NOTE: everything inside the details tag will be collapsed and effectively
 hidden from the user
  -->
+
 <summary style="text-decoration: underline">
+
 Click here for alternative installation options
 </summary>
-
-If there is a bugfix or feature that is not yet on CRAN, you can install
-it via the {drat} package:
 
 You can also install the in-development version from GitHub using the
 {remotes} package (but there’s no guarantee that it will be stable):
@@ -70,7 +71,7 @@ partitioning them into separate chunks.
 
 ``` r
 library("knitr")
-#> Warning: Paket 'knitr' wurde unter R Version 4.2.2 erstellt
+#> Warning: Paket 'knitr' wurde unter R Version 4.4.3 erstellt
 library("magrittr")
 
 set.seed(1)
@@ -105,78 +106,52 @@ df %>%
 #> 20     30-39       <NA>  30-39 years
 ```
 
-## Quick proportions with conficence intervals
-
-There are three functions that will provide quick statistics for
-different rates based on binomial estimates of proportions from
-`binom::binom.wilson()`
-
--   `attack_rate()`
--   `case_fatality_rate()`
--   `mortality_rate()`
-
-``` r
-attack_rate(10, 50)
-#>   cases population ar    lower    upper
-#> 1    10         50 20 11.24375 33.03711
-case_fatality_rate(2, 50)
-#>   deaths population cfr    lower    upper
-#> 1      2         50   4 1.103888 13.46009
-mortality_rate(40, 50000)
-#>   deaths population mortality per 10 000   lower    upper
-#> 1     40      50000                    8 5.87591 10.89109
-```
-
-In addition, it’s possible to rapidly calculate Case fatality rate from
-a linelist, stratified by different groups (e.g. gender):
-
-``` r
-library("outbreaks")
-case_fatality_rate_df(ebola_sim_clean$linelist, 
-  outcome == "Death", 
-  group = gender,
-  add_total = TRUE,
-  mergeCI = TRUE
-)
-#> Warning: There was 1 warning in `dplyr::mutate()`.
-#> ℹ In argument: `gender = forcats::fct_explicit_na(gender, "(Missing)")`.
-#> Caused by warning:
-#> ! `fct_explicit_na()` was deprecated in forcats 1.0.0.
-#> ℹ Please use `fct_na_value_to_level()` instead.
-#> ℹ The deprecated feature was likely used in the epikit package.
-#>   Please report the issue at <https://github.com/R4EPI/epikit/issues>.
-#> # A tibble: 3 × 5
-#>   gender deaths population   cfr ci           
-#>   <fct>   <int>      <int> <dbl> <chr>        
-#> 1 f        1291       2280  56.6 (54.58-58.64)
-#> 2 m        1273       2247  56.7 (54.59-58.69)
-#> 3 Total    2564       4527  56.6 (55.19-58.08)
-```
-
 ## Inline functions
 
 The inline functions make it easier to print estimates with confidence
 intervals in reports with the correct number of digits.
 
-
--   `fmt_ci()` formats confidence intervals from three numbers.
-    (e.g. `fmt_ci(50, 10, 80)` produces 50.00% (CI 10.00-80.00)
--   `fmt_pci()` formats confidence intervals from three fractions,
-    multiplying by 100 beforehand.
+- `fmt_ci()` formats confidence intervals from three numbers.
+  (e.g. `fmt_ci(50, 10, 80)` produces 50.00% (CI 10.00-80.00)
+- `fmt_pci()` formats confidence intervals from three fractions,
+  multiplying by 100 beforehand.
 
 The `_df` suffixes (`fmt_ci_df()`, `fmt_pci_df()`) will print the
 confidence intervals for data stored in data frames. These are designed
-to work with the outputs of the rates functions. For example,
-`fmt_ci_df(attack_rate(10, 50))` will produce 20.00% (CI 11.24-33.04).
-All of these suffixes will have three options `e`, `l`, and `u`. These
-refer to `estimate`, `lower`, and `upper` column positions or names.
+to work with the outputs of the rates functions. Such as the below
+dataframe output.
 
--   `fmt_count()` will count a condition in a data frame and present the
-    number and percent of `TRUE` values. For example, if you wanted to
-    count the number of women patients from Rokupa hospital, you would
-    write:
-    `fmt_count(ebola_sim_clean$linelist, gender == "f", hospital == "Rokupa Hospital")`
-    and it would produce: 210 (3.6%)
+``` r
+# Create fake dataframe 
+dat <- data.frame(
+  deaths = 10,
+  population = 50,
+  cfr = 20,
+  lower = 11.24375,
+  upper = 33.03711
+)
+```
+
+- For example, `fmt_ci_df(dat)` will produce 20.00% (CI 11.24-33.04).
+  All of these suffixes will have three options `e`, `l`, and `u`. These
+  refer to `estimate`, `lower`, and `upper` column positions or names.
+
+- `fmt_count()` will count a condition in a data frame and present the
+  number and percent of `TRUE` values. For example, if you wanted to
+  count the number of women patients from hospital from the below fake
+  dataset.
+
+``` r
+
+## create fake dataset
+dat <- data.frame(
+  gender = sample(c("f", "m"), 100, replace = TRUE), 
+  location = sample(c("hospital", "clinic", "community"), 100, replace = TRUE)
+)
+```
+
+You would write:`fmt_count(dat, gender == "f", location == "hospital")`
+and it would produce: 18 (18.0%)
 
 ## Confidence interval manipulation
 
