@@ -347,7 +347,7 @@ check_inappropriate_fills <- function(original_data, result, period_start,
         length(problematic_rows),
         direction,
         boundary_name,
-        paste(head(problematic_rows, 10), collapse = ", ")
+        paste(problematic_rows, collapse = ", ")
       ),
       immediate. = TRUE,
       call. = FALSE
