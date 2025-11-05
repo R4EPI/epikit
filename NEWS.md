@@ -1,3 +1,5 @@
+# epikit 0.2.0
+
 # epikit 0.1.6 
 
 * internal documentation fix. No user-visible changes.
