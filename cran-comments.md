@@ -1,11 +1,13 @@
-This is a maintenance release
-
 ## Test environments
 
-* local macOS install, R 4.0.2
-* ubuntu 16.04 (on GitHub Actions), R 4.0.2, devel, 3.6
-* windows (devel, release, and 3.6)
+* local R 4.4.1, Windows 11
+* ubuntu-latest (GitHub Actions)
+* macOS-latest (GitHub Actions)
+* win-builder (devel and release)
+
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 note
+
+* New maintainer email updated.
