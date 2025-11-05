@@ -26,7 +26,7 @@ Authors@R:
 Description: Contains tools for formatting inline code, renaming redundant
   columns, aggregating age categories, adding survey weights, finding the earliest
   date of an event, plotting z-curves, generating population counts and 
-  calculating proportions with confidence intervals. This is part of the 
+  formatting proportions with confidence intervals. This is part of the 
   'R4Epis' project <https://r4epi.github.io/sitrep/>.
 License: GPL-3
 Encoding: UTF-8
@@ -50,7 +50,7 @@ Suggests:
     knitr,
     magrittr,
     rmarkdown
-URL: https://github.com/R4EPI/epikit,
+URL: https://github.com/R4EPI/epikit/,
     https://r4epi.github.io/epikit/
 BugReports: https://github.com/R4EPI/epikit/issues
 VignetteBuilder: knitr

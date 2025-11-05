@@ -6,7 +6,7 @@ epikit
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/epikit)](https://CRAN.R-project.org/package=epikit)
 [![R-CMD-check](https://github.com/R4EPI/epikit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/R4EPI/epikit/actions/workflows/R-CMD-check.yaml)

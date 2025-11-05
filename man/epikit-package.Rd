@@ -6,12 +6,12 @@
 \alias{epikit-package}
 \title{epikit: Miscellaneous Helper Tools for Epidemiologists}
 \description{
-Contains tools for formatting inline code, renaming redundant columns, aggregating age categories, adding survey weights, finding the earliest date of an event, plotting z-curves, generating population counts and calculating proportions with confidence intervals. This is part of the 'R4Epis' project \url{https://r4epi.github.io/sitrep/}.
+Contains tools for formatting inline code, renaming redundant columns, aggregating age categories, adding survey weights, finding the earliest date of an event, plotting z-curves, generating population counts and formatting proportions with confidence intervals. This is part of the 'R4Epis' project \url{https://r4epi.github.io/sitrep/}.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/R4EPI/epikit}
+  \item \url{https://github.com/R4EPI/epikit/}
   \item \url{https://r4epi.github.io/epikit/}
   \item Report bugs at \url{https://github.com/R4EPI/epikit/issues}
 }
