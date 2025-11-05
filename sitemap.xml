@@ -1,87 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://r4epi.github.io/epikit/404.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/ISSUE_TEMPLATE.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/SUPPORT.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/articles/intro.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/index.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/add_weights_cluster.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/add_weights_strata.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/age_categories.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/attack_rate.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/dots_to_charlist.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/epikit-package.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/fac_from_num.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/find_breaks.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/find_date_cause.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/fmt_ci.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/fmt_count.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/gen_polygon.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/gen_population.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/rename_redundant.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/unite_ci.html</loc>
-  </url>
-  <url>
-    <loc>https://r4epi.github.io/epikit/reference/zcurve.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://r4epi.github.io/epikit/404.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/CONTRIBUTING.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/ISSUE_TEMPLATE.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/LICENSE.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/SUPPORT.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/articles/index.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/articles/intro.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/authors.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/index.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/news/index.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/add_weights_cluster.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/add_weights_strata.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/age_categories.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/dots_to_charlist.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/epikit-package.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/fac_from_num.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/find_breaks.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/find_date_cause.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/fmt_ci.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/fmt_count.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/gen_polygon.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/gen_population.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/index.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/rename_redundant.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/unite_ci.html</loc></url>
+<url><loc>https://r4epi.github.io/epikit/reference/zcurve.html</loc></url>
 </urlset>
+
