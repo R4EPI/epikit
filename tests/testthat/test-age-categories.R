@@ -198,3 +198,41 @@ test_that("levels are combined", {
   expect_equal(as.character(res$age_category[20]), "4-5 days")
 })
 
+test_that("age_categories handles all 4 floor/ceiling combos", {
+  ages <- c(2L, 7L, 12L, 18L, 24L, 33L, 41L, 58L, 67L, 85L)
+  breakers <- seq(0, 80, by = 20)
+
+  # 1) floor = FALSE, ceiling = FALSE -> open top (5 intervals)
+  res1 <- age_categories(ages, breakers = breakers, floor = FALSE, ceiling = FALSE)
+  expect_equal(
+    levels(res1),
+    c("0-19", "20-39", "40-59", "60-79", "80+")
+  )
+  # spot checks
+  expect_equal(as.character(res1[c(1, 2, 10)]), c("0-19", "0-19", "80+"))
+
+  # 2) floor = TRUE, ceiling = FALSE -> "<" lowest, "+" highest (5 intervals)
+  res2 <- age_categories(ages, breakers = breakers, floor = TRUE, ceiling = FALSE)
+  expect_equal(
+    levels(res2),
+    c("<20", "20-39", "40-59", "60-79", "80+")
+  )
+  expect_equal(as.character(res2[c(1, 10)]), c("<20", "80+"))
+
+  # 3) floor = FALSE, ceiling = TRUE -> normal bottom, closed top (4 intervals)
+  res3 <- age_categories(ages, breakers = breakers, floor = FALSE, ceiling = TRUE)
+  expect_equal(
+    levels(res3),
+    c("0-19", "20-39", "40-59", "60-80")
+  )
+  expect_equal(as.character(res3[9]), "60-80")
+  expect_equal(as.character(res3[10]), NA_character_)
+
+  # 4) floor = TRUE, ceiling = TRUE -> "<" lowest, closed top (4 intervals)
+  res4 <- age_categories(ages, breakers = breakers, floor = TRUE, ceiling = TRUE)
+  expect_equal(
+    levels(res4),
+    c("<20", "20-39", "40-59", "60-80")
+  )
+  expect_equal(as.character(res4[c(1, 10)]), c("<20", NA))
+})
